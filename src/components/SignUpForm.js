@@ -53,10 +53,8 @@ export const SignUpForm = ({ isMobile }) => {
       const signupInput = {
         firstName: formData.firstName,
         lastName: formData.lastName,
-        phoneNumber: formData.phoneNumber,
         email: formData.email,
         password: formData.password,
-        userType: "petCarer",
       };
 
       signup({
