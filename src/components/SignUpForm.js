@@ -17,11 +17,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Divider from "@mui/material/Divider";
 import Link from "@mui/material/Link";
 import FormHelperText from "@mui/material/FormHelperText";
-import Dialog from "@mui/material/Dialog";
 
-import DialogActions from "@mui/material/DialogActions";
-
-import Button from "@mui/material/Button";
 import { SIGNUP } from "../graphql/mutations";
 
 export const SignUpForm = ({ isMobile }) => {
@@ -38,7 +34,6 @@ export const SignUpForm = ({ isMobile }) => {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmedPassword, setShowConfirmedPassword] = useState(false);
-  const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
 
@@ -79,21 +74,9 @@ export const SignUpForm = ({ isMobile }) => {
   const toggleShowConfirmedPassword = () => {
     setShowConfirmedPassword(!showConfirmedPassword);
   };
-  const handleOpenModal = () => {
-    setOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setOpen(false);
-  };
 
   return (
     <Paper sx={{ p: 3, minWidth: isMobile ? "90%" : "400px" }} elevation={6}>
-      <Dialog open={open} onClose={handleCloseModal}>
-        <DialogActions>
-          <Button onClick={handleCloseModal}>Cancel</Button>
-        </DialogActions>
-      </Dialog>
       <Typography component="h1" variant="h4" align="center">
         Sign Up
       </Typography>
