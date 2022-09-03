@@ -17,6 +17,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Divider from "@mui/material/Divider";
 import Link from "@mui/material/Link";
 import FormHelperText from "@mui/material/FormHelperText";
+import Dialog from "@mui/material/Dialog";
 
 import DialogActions from "@mui/material/DialogActions";
 
@@ -60,7 +61,7 @@ export const SignUpForm = ({ isMobile }) => {
         phoneNumber: formData.phoneNumber,
         email: formData.email,
         password: formData.password,
-        userType: "quiz",
+        userType: "petCarer",
       };
 
       signup({
@@ -86,56 +87,17 @@ export const SignUpForm = ({ isMobile }) => {
     setOpen(false);
   };
 
-  // const handleAddressLookup = () => {
-  //   addressLookup({
-  //     variables: {
-  //       postcode: getValues("postcode"),
-  //     },
-  //   });
-  // };
-
-  // const handleAddressSelection = (event) => {
-  //   setSelectedAddressId(event.currentTarget.id);
-  //   const { fullAddress } = addressLookupData?.addressLookup?.addresses.find(
-  //     (each) => each._id === event.currentTarget.id
-  //   );
-  //   setSelectedAddress(fullAddress);
-  //   clearErrors("postcode");
-  //   handleCloseModal();
-  // };
-
   return (
     <Paper sx={{ p: 3, minWidth: isMobile ? "90%" : "400px" }} elevation={6}>
-      {/* <Dialog open={open} onClose={handleCloseModal}>
-        <DialogTitle>Select Address</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Please select one address from the following list:
-          </DialogContentText> */}
-      {/* <List>
-            {addressLookupData?.addressLookup?.addresses?.map((address) => {
-              return (
-              //   <ListItem disablePadding key={address._id}>
-              //     <ListItemButton
-              //       onClick={handleAddressSelection}
-              //       id={address._id}
-              //     >
-              //       <ListItemText primary={address.fullAddress} />
-              //     </ListItemButton>
-              //   </ListItem>
-              // );
-            })}
-          </List> */}
-      {/* </DialogContent> */}
-      <DialogActions>
-        <Button onClick={handleCloseModal}>Cancel</Button>
-      </DialogActions>
-      {/* </Dialog> */}
+      <Dialog open={open} onClose={handleCloseModal}>
+        <DialogActions>
+          <Button onClick={handleCloseModal}>Cancel</Button>
+        </DialogActions>
+      </Dialog>
       <Typography component="h1" variant="h4" align="center">
         Sign Up
       </Typography>
       <Divider />
-
       <Stack
         component="form"
         sx={{ p: 3 }}
@@ -168,55 +130,6 @@ export const SignUpForm = ({ isMobile }) => {
               required: true,
             })}
           />
-          <TextField
-            required
-            error={!!errors.phoneNumber}
-            label="Phone Number"
-            variant="outlined"
-            helperText={
-              !!errors.phoneNumber ? "Please enter your phone number." : ""
-            }
-            {...register("phoneNumber", {
-              required: true,
-            })}
-          />
-          {/* <Typography component="h2" variant="button" align="left">
-            Address Details
-          </Typography>
-          <FormControl sx={{ m: 1 }} variant="outlined">
-            <InputLabel htmlFor="outlined-adornment-password">
-              Postcode
-            </InputLabel>
-            <OutlinedInput
-              id="outlined-adornment-password"
-              type="text"
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleAddressLookup}
-                    onMouseDown={handleAddressLookup}
-                    edge="end"
-                  > */}
-          {/* <SearchIcon /> */}
-          {/* </IconButton> */}
-          {/* </InputAdornment> */}}
-          {/* label="Password"
-              {...register("postcode", {
-                required: true,
-              })}
-            />
-            {!!errors.postcode && (
-              <FormHelperText error={!!errors.postcode}>
-                {errors.postcode?.message}
-              </FormHelperText>
-            )}
-          </FormControl>
-          {selectedAddress && (
-            <Typography component="div" variant="caption" align="left">
-              {selectedAddress}
-            </Typography>
-          )} */}
           <Typography component="h2" variant="button" align="left">
             Account Details
           </Typography>
