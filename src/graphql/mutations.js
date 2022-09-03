@@ -21,25 +21,6 @@ export const LOGIN = gql`
         phoneNumber
         imageUrl
         userType
-        address {
-          _id
-          formatted_address
-          thoroughfare
-          building_name
-          sub_building_name
-          sub_building_number
-          building_number
-          line_1
-          line_2
-          line_3
-          line_4
-          locality
-          town_or_city
-          county
-          district
-          country
-          fullAddress
-        }
       }
     }
   }
