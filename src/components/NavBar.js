@@ -17,6 +17,9 @@ export const NavBar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
 
+  // set state for log out
+  const [loggingOut, setisLoggingOut] = useState(false);
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -28,7 +31,13 @@ export const NavBar = () => {
   };
 
   const logOut = () => {
-    console.log("logout");
+    // set a state that when true it will render the log out/ sign up page
+    setisLoggingOut(!loggingOut);
+
+    // render the login sign up page
+
+    // i also want to clear from localstorage
+    localStorage.clear();
   };
 
   const navItems = isLoggedIn

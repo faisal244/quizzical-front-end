@@ -12,6 +12,7 @@
 
 body {
   margin: 0;
+  background-color: var(--light-cyan);
 }
 
 .jumbotron {
@@ -20,4 +21,20 @@ body {
 
 .create-quiz {
   background-color: var(--midnight-blue);
+}
+.jumbotron {
+  color: var(--midnight-blue);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.img-dash {
+  width: 20rem;
+  opacity: 90rem;
+}
+#bannerimage {
+  width: 100%;
+  background-image: url("../src/images/dashquiz.jpg");
+  height: 500px;
+  background-color: var(--light-cyan);
+  background-position: center;
 }
