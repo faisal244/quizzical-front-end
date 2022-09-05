@@ -19,22 +19,24 @@ body {
   text-align: center;
 }
 
-.create-quiz {
-  background-color: var(--midnight-blue);
-}
 .jumbotron {
-  color: var(--midnight-blue);
+  color: whitesmoke;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.3rem;
 }
 
-.img-dash {
-  width: 20rem;
-  opacity: 90rem;
-}
 #bannerimage {
   width: 100%;
   background-image: url("../src/images/dashquiz.jpg");
   height: 500px;
-  background-color: var(--light-cyan);
+  background-color: var(--star-command-blue);
   background-position: center;
+}
+
+.button-stack {
+  background-color: var(--midnight-blue);
+}
+
+.button-stack:hover {
+  background-color: var(--pacific-blue);
 }

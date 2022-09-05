@@ -12,18 +12,18 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import { useAuth } from "../context/AppProvider";
+import { LoginForm } from "./LoginForm";
 
 export const NavBar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
 
   // set state for log out
-  const [loggingOut, setisLoggingOut] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, setIsLoggedIn, setUser } = useAuth();
 
   const navigator = (event) => {
     const path = event.target.dataset.path;
@@ -31,13 +31,15 @@ export const NavBar = () => {
   };
 
   const logOut = () => {
-    // set a state that when true it will render the log out/ sign up page
-    setisLoggingOut(!loggingOut);
+    console.log("loggedout");
 
+    //clear from localstorage
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     // render the login sign up page
-
-    // i also want to clear from localstorage
-    localStorage.clear();
+    setIsLoggedIn(false);
+    setUser();
+    navigate("/");
   };
 
   const navItems = isLoggedIn

@@ -14,7 +14,7 @@ export const DashboardPage = () => {
             This is an app used to help you test your knowledge and have fun
             whilst learning
           </p>
-          <hr className="my-4" />
+
           <p>Click any of the buttons below to get started</p>
           <p className="lead"></p>
 
@@ -23,16 +23,31 @@ export const DashboardPage = () => {
             direction="row"
             justifyContent="center"
             marginTop="1.5rem"
+            paddingTop="2.5rem"
           >
             <Button
               variant="text"
               className="create-quiz"
               onClick={createQuizPage}
+              sx={{
+                backgroundColor: "secondary.main",
+                color: "white",
+                borderRadius: "2",
+              }}
             >
               Create A Quiz
             </Button>
             <Button variant="contained">View HighScores</Button>
-            <Button variant="outlined">View Saved Quizes</Button>
+            <Button
+              variant="outlined"
+              sx={{
+                backgroundColor: "success.main",
+                color: "white",
+                borderRadius: "2",
+              }}
+            >
+              View Saved Quizes
+            </Button>
           </Stack>
         </div>
       </div>
