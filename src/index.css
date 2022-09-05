@@ -1,7 +1,23 @@
+:root {
+  --midnight-blue: #03045eff;
+  --star-command-blue: #0077b6ff;
+  --pacific-blue: #00b4d8ff;
+  --middle-blue: #90e0efff;
+  --light-cyan: #caf0f8ff;
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
+}
+
+.jumbotron {
+  text-align: center;
+}
+
+.create-quiz {
+  background-color: var(--midnight-blue);
 }
