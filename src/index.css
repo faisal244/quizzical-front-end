@@ -28,7 +28,7 @@ body {
 #bannerimage {
   width: 100%;
   background-image: url("../src/images/dashquiz.jpg");
-  height: 500px;
+  height: 900px;
   background-color: var(--star-command-blue);
   background-position: center;
 }
@@ -44,7 +44,7 @@ body {
 .arrow-img {
   width: 100%;
   background-image: url("../src/images/arrow.jpg");
-  height: 400px;
+  height: 900px;
   background-position: center;
 }
 

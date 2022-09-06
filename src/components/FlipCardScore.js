@@ -9,6 +9,27 @@ export const FlipCardScore = () => {
     <div>
       <Grid container spacing={7} className="grid-container">
         <Grid item xs={4}>
+          <Card sx={{ maxWidth: 340, backgroundColor: "teal" }}>
+            <CardMedia
+              component="img"
+              height="140"
+              className="flip-scores-img"
+              alt="Flip Img"
+            />
+            <CardContent>
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="div"
+                color="white"
+              >
+                Hey <span className="wave">👋</span> , Osman You Scored
+                <br />
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={4}>
           <Card sx={{ maxWidth: 345, backgroundColor: "teal" }}>
             <CardMedia
               component="img"
@@ -17,7 +38,33 @@ export const FlipCardScore = () => {
               alt="Flip Img"
             />
             <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="div"
+                color="white"
+              >
+                Hey <span className="wave">👋</span> , Osman You Scored
+                <br />
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={4}>
+          <Card sx={{ maxWidth: 345, backgroundColor: "teal" }}>
+            <CardMedia
+              component="img"
+              height="140"
+              className="flip-scores-img"
+              alt="Flip Img"
+            />
+            <CardContent>
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="div"
+                color="white"
+              >
                 Hey <span className="wave">👋</span> , Osman You Scored
                 <br />
               </Typography>
