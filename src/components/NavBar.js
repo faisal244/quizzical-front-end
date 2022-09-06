@@ -13,7 +13,6 @@ import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import { useAuth } from "../context/AppProvider";
 import HomeIcon from "@mui/icons-material/Home";
-import { LoginForm } from "./LoginForm";
 
 export const NavBar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
