@@ -1,10 +1,19 @@
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom";
 
 export const DashboardPage = () => {
+  const navigate = useNavigate();
+
   const createQuizPage = () => {
     console.log("clicked create quiz");
   };
+
+  const viewHighScores = () => {
+    console.log("high-score");
+    navigate("/highscores");
+  };
+
   return (
     <div className="container">
       <div className="jumbotron">
@@ -37,7 +46,9 @@ export const DashboardPage = () => {
             >
               Create A Quiz
             </Button>
-            <Button variant="contained">View HighScores</Button>
+            <Button variant="contained" onClick={viewHighScores}>
+              View HighScores
+            </Button>
             <Button
               variant="outlined"
               sx={{

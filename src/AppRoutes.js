@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { LoginPage } from "./containers/LoginPage";
 import { SignUpPage } from "./containers/SignUpPage";
 import { DashboardPage } from "./containers/DashboardPage";
+import { HighScorePage } from "./containers/HighScorePage";
 import { useAuth } from "./context/AppProvider";
 
 export const AppRoutes = () => {
@@ -22,6 +23,8 @@ export const AppRoutes = () => {
           <Route path="/dashboard" element={<DashboardPage />} />
         </>
       )}
+
+      <Route path="/highscores" element={<HighScorePage />} />
     </Routes>
   );
 };
