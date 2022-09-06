@@ -40,3 +40,16 @@ body {
 .button-stack:hover {
   background-color: var(--pacific-blue);
 }
+
+.high-scores-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.arrow-img {
+  width: 100%;
+  background-image: url("../src/images/arrow.jpg");
+  height: 400px;
+  background-position: center;
+}
