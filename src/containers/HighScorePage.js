@@ -17,17 +17,17 @@ export const HighScorePage = () => {
 
   const card = (
     <React.Fragment>
-      <CardContent sx={{ backgroundColor: "primary.main" }}>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          Word of the Day
+      <CardContent sx={{ backgroundColor: "teal" }}>
+        <Typography sx={{ fontSize: 14 }} color="white" gutterBottom>
+          Hey , Osman You Score
         </Typography>
-        <Typography variant="h5" component="div">
+        <Typography variant="h5" component="div" color="white">
           be{bull}nev{bull}o{bull}lent
         </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+        <Typography sx={{ mb: 1.5 }} color="white">
           adjective
         </Typography>
-        <Typography variant="body2">
+        <Typography variant="body2" color="white">
           well meaning and kindly.
           <br />
           {'"a benevolent smile"'}
