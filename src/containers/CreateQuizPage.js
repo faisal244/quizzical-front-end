@@ -2,6 +2,7 @@ import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import Button from "@mui/material/Button";
 
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
@@ -25,7 +26,7 @@ export const CreateQuizPage = () => {
       <FormControl
         fullWidth
         onClick={handleChange}
-        sx={{ p: 2, mt: 2, textAlign: "center" }}
+        sx={{ p: 1, mt: 3, textAlign: "center" }}
       >
         <InputLabel id="demo-simple-select-label" sx={{ textAlign: "center" }}>
           Please Select A Category
@@ -41,7 +42,7 @@ export const CreateQuizPage = () => {
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
       </FormControl>
-      <FormControl fullWidth onClick={handleChange} sx={{ p: 2, mt: 2 }}>
+      <FormControl fullWidth onClick={handleChange} sx={{ p: 1, mt: 3 }}>
         <InputLabel id="demo-simple-select-label" sx={{ textAlign: "center" }}>
           Please Select A Question Type
         </InputLabel>
@@ -56,7 +57,7 @@ export const CreateQuizPage = () => {
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
       </FormControl>
-      <FormControl fullWidth onClick={handleChange} sx={{ p: 2, mt: 2 }}>
+      <FormControl fullWidth onClick={handleChange} sx={{ p: 1, mt: 3 }}>
         <InputLabel id="demo-simple-select-label" sx={{ textAlign: "center" }}>
           Please Select A Difficulty Level
         </InputLabel>
@@ -71,7 +72,7 @@ export const CreateQuizPage = () => {
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
       </FormControl>
-      <FormControl fullWidth onClick={handleChange} sx={{ p: 2, mt: 2 }}>
+      <FormControl fullWidth onClick={handleChange} sx={{ p: 1, mt: 3 }}>
         <InputLabel id="demo-simple-select-label" sx={{ textAlign: "center" }}>
           Please Select The Number Of Questions
         </InputLabel>
@@ -85,6 +86,9 @@ export const CreateQuizPage = () => {
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
+        <Button variant="contained" color="success" sx={{ p: 1, mt: 2 }}>
+          Create A Quiz
+        </Button>
       </FormControl>
     </div>
   );
