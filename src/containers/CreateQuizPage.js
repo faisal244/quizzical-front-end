@@ -7,11 +7,31 @@ import TextField from "@mui/material/TextField";
 
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
+import { getResults } from "../api/getResults";
 
 import { CREATEQUIZ } from "../graphql/mutations";
 
 export const CreateQuizPage = () => {
-  const [createQuiz] = useMutation(CREATEQUIZ);
+  const [
+    createQuiz,
+    { data: quizData, loading: quizLoading, error: quizError },
+  ] = useMutation(CREATEQUIZ);
+
+  const generateQuiz = () => {
+    const quizInput = {
+      type: quizData.type,
+      difficulty: quizData.difficulty,
+      category: quizData.category,
+      questions: quizData.question,
+    };
+
+    // quiz({
+    //   variables: {
+    //     quizInput,
+    //   },
+    // });
+  };
+
   // state for all inputs
   const [categoryName, setCategoryName] = useState("");
   const [questionType, setType] = useState("");
@@ -20,6 +40,8 @@ export const CreateQuizPage = () => {
 
   const handleCategoryChange = (e) => {
     setCategoryName(e.target.value);
+
+    console.log(setCategoryName);
     console.log("clicked on handleCategoryChange");
   };
 
@@ -54,6 +76,7 @@ export const CreateQuizPage = () => {
           value={categoryName}
           label="Category"
           onChange={handleCategoryChange}
+          
         >
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
@@ -68,7 +91,7 @@ export const CreateQuizPage = () => {
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={questionType}
-          label="Category"
+          label="Question"
           onChange={handleQuestionTypeChange}
         >
           <MenuItem value={40}>Fourty</MenuItem>
@@ -84,7 +107,7 @@ export const CreateQuizPage = () => {
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={difficulty}
-          label="Category"
+          label="Difficulty"
           onChange={handleDifficultyChange}
         >
           <MenuItem value={70}>Seventy</MenuItem>

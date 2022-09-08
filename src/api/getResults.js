@@ -1,14 +1,12 @@
 import axios from "axios";
 
-const URL = "https://opentdb.com/api.php?amount=1";
+const URL = "https://opentdb.com/api_category.php";
 
 export const getResults = () => {
   axios
     .get(`${URL}`)
     .then((response) => {
-      const resultsAPI = response.data.results;
-
-      console.log(resultsAPI);
+      console.log(response.data);
     })
     .catch((error) => console.error(`ERROR: ${error}`));
 };
