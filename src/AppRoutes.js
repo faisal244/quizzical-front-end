@@ -3,7 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import { LoginPage } from "./containers/LoginPage";
 import { SignUpPage } from "./containers/SignUpPage";
 import { DashboardPage } from "./containers/DashboardPage";
-import { HighScorePage } from "./containers/HighScorePage";
+import { ViewQuizPage } from "./containers/ViewQuizPage";
+import { CreateQuizPage } from "./containers/CreateQuizPage";
 import { useAuth } from "./context/AppProvider";
 
 export const AppRoutes = () => {
@@ -24,7 +25,8 @@ export const AppRoutes = () => {
         </>
       )}
 
-      <Route path="/highscores" element={<HighScorePage />} />
+      <Route path="/viewquizpage" element={<ViewQuizPage />} />
+      <Route path="/createquizpage" element={<CreateQuizPage />} />
     </Routes>
   );
 };

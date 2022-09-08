@@ -23,7 +23,7 @@ export const FlipCardScore = () => {
                 component="div"
                 color="white"
               >
-                Hey <span className="wave">👋</span> , Osman You Scored
+                Hey <span className="wave">👋</span> , Osman
                 <br />
               </Typography>
             </CardContent>
@@ -44,7 +44,7 @@ export const FlipCardScore = () => {
                 component="div"
                 color="white"
               >
-                Hey <span className="wave">👋</span> , Osman You Scored
+                Hey <span className="wave">👋</span> , Osman
                 <br />
               </Typography>
             </CardContent>
@@ -65,7 +65,7 @@ export const FlipCardScore = () => {
                 component="div"
                 color="white"
               >
-                Hey <span className="wave">👋</span> , Osman You Scored
+                Hey <span className="wave">👋</span> , Osman
                 <br />
               </Typography>
             </CardContent>

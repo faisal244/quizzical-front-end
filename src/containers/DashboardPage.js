@@ -7,11 +7,12 @@ export const DashboardPage = () => {
 
   const createQuizPage = () => {
     console.log("clicked create quiz");
+    navigate("/createquizpage");
   };
 
-  const viewHighScores = () => {
-    console.log("high-score");
-    navigate("/highscores");
+  const viewQuizPage = () => {
+    console.log("view quizes");
+    navigate("/viewquizpage");
   };
 
   return (
@@ -20,8 +21,7 @@ export const DashboardPage = () => {
         <div id="bannerimage">
           <h1 className="display-4">Hello Welcome To Your Ultimate Quiz!</h1>
           <p className="lead">
-            This is an app used to help you test your knowledge and have fun
-            whilst learning
+            Please Choose If You Would Like To Keep The Quizes Below
           </p>
 
           <p>Click any of the buttons below to get started</p>
@@ -44,20 +44,19 @@ export const DashboardPage = () => {
                 borderRadius: "2",
               }}
             >
-              Create A Quiz
-            </Button>
-            <Button variant="contained" onClick={viewHighScores}>
-              View HighScores
+              Create A New Quiz
             </Button>
             <Button
-              variant="outlined"
+              variant="text"
+              className="create-quiz"
+              onClick={viewQuizPage}
               sx={{
-                backgroundColor: "success.main",
+                backgroundColor: "secondary.main",
                 color: "white",
                 borderRadius: "2",
               }}
             >
-              View Saved Quizes
+              View Yor Quizes
             </Button>
           </Stack>
         </div>
