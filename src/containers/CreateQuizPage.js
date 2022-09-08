@@ -1,29 +1,23 @@
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+
+import { useMutation } from "@apollo/client";
 import { useState } from "react";
-import axios from "axios";
+
+import { CREATEQUIZ } from "../graphql/mutations";
 
 export const CreateQuizPage = () => {
+  const [createQuiz] = useMutation(CREATEQUIZ);
   // state for categories
   const [categoryName, setCategoryName] = useState("");
-  //make a call to API to get all the categories
-  //define the URL
-  const URL = "https://opentdb.com/api.php?amount=11";
-
-  const getAllCategories = () => {
-    axios
-      .get(`${URL}`)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => console.error(`ERROR: ${error}`));
-  };
 
   const handleChange = (event) => {
+    let category_name;
     setCategoryName(event.target.value);
     console.log("clicked on input");
-    getAllCategories();
+    createQuiz({ variables: { categoryName: category_name.value() } });
   };
   return (
     <div>
@@ -36,7 +30,11 @@ export const CreateQuizPage = () => {
           id="demo-simple-select"
           value={categoryName}
           label="Age"
-        ></Select>
+        >
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
       </FormControl>
     </div>
   );
