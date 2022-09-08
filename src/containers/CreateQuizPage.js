@@ -3,6 +3,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
@@ -17,17 +18,33 @@ export const CreateQuizPage = () => {
   const [difficulty, setDifficulty] = useState("");
   const [questions, setQuestions] = useState("");
 
-  const handleChange = (event) => {
-    setCategoryName(event.target.value);
-    console.log("clicked on input");
+  const handleCategoryChange = (e) => {
+    setCategoryName(e.target.value);
+    console.log("clicked on handleCategoryChange");
+  };
+
+  const handleDifficultyChange = (e) => {
+    setDifficulty(e.target.value);
+    console.log("clicked on handleDifficultyChange");
+  };
+  const handleQuestionTypeChange = (e) => {
+    setType(e.target.value);
+    console.log("clicked on handleQuestionTypeChange");
+  };
+  const handleQuestionChange = (e) => {
+    setQuestions(e.target.value);
+    console.log("clicked on handleQuestionChange");
   };
   return (
     <div>
-      <FormControl
-        fullWidth
-        onClick={handleChange}
+      <TextField
+        id="outlined-basic"
+        label="Title"
+        variant="outlined"
         sx={{ p: 1, mt: 3, textAlign: "center" }}
-      >
+      />
+
+      <FormControl fullWidth sx={{ p: 1, mt: 3, textAlign: "center" }}>
         <InputLabel id="demo-simple-select-label" sx={{ textAlign: "center" }}>
           Please Select A Category
         </InputLabel>
@@ -36,13 +53,14 @@ export const CreateQuizPage = () => {
           id="demo-simple-select"
           value={categoryName}
           label="Category"
+          onChange={handleCategoryChange}
         >
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
       </FormControl>
-      <FormControl fullWidth onClick={handleChange} sx={{ p: 1, mt: 3 }}>
+      <FormControl fullWidth sx={{ p: 1, mt: 3 }}>
         <InputLabel id="demo-simple-select-label" sx={{ textAlign: "center" }}>
           Please Select A Question Type
         </InputLabel>
@@ -51,13 +69,14 @@ export const CreateQuizPage = () => {
           id="demo-simple-select"
           value={questionType}
           label="Category"
+          onChange={handleQuestionTypeChange}
         >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value={40}>Fourty</MenuItem>
+          <MenuItem value={50}>Fifty</MenuItem>
+          <MenuItem value={60}>Sixty</MenuItem>
         </Select>
       </FormControl>
-      <FormControl fullWidth onClick={handleChange} sx={{ p: 1, mt: 3 }}>
+      <FormControl fullWidth sx={{ p: 1, mt: 3 }}>
         <InputLabel id="demo-simple-select-label" sx={{ textAlign: "center" }}>
           Please Select A Difficulty Level
         </InputLabel>
@@ -66,13 +85,14 @@ export const CreateQuizPage = () => {
           id="demo-simple-select"
           value={difficulty}
           label="Category"
+          onChange={handleDifficultyChange}
         >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value={70}>Seventy</MenuItem>
+          <MenuItem value={80}>Eighty</MenuItem>
+          <MenuItem value={90}>Thirty</MenuItem>
         </Select>
       </FormControl>
-      <FormControl fullWidth onClick={handleChange} sx={{ p: 1, mt: 3 }}>
+      <FormControl fullWidth sx={{ p: 1, mt: 3 }}>
         <InputLabel id="demo-simple-select-label" sx={{ textAlign: "center" }}>
           Please Select The Number Of Questions
         </InputLabel>
@@ -81,10 +101,11 @@ export const CreateQuizPage = () => {
           id="demo-simple-select"
           value={questions}
           label="Questions"
+          onChange={handleQuestionChange}
         >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value={100}>OneTen</MenuItem>
+          <MenuItem value={120}>OneTwenty</MenuItem>
+          <MenuItem value={130}>OneThirty</MenuItem>
         </Select>
         <Button variant="contained" color="success" sx={{ p: 1, mt: 2 }}>
           Create A Quiz
