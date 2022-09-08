@@ -10,26 +10,76 @@ import { CREATEQUIZ } from "../graphql/mutations";
 
 export const CreateQuizPage = () => {
   const [createQuiz] = useMutation(CREATEQUIZ);
-  // state for categories
+  // state for all inputs
   const [categoryName, setCategoryName] = useState("");
+  const [questionType, setType] = useState("");
+  const [difficulty, setDifficulty] = useState("");
+  const [questions, setQuestions] = useState("");
 
   const handleChange = (event) => {
-    let category_name;
     setCategoryName(event.target.value);
     console.log("clicked on input");
-    createQuiz({ variables: { categoryName: category_name.value() } });
   };
   return (
     <div>
-      <FormControl fullWidth onClick={handleChange}>
-        <InputLabel id="demo-simple-select-label">
+      <FormControl
+        fullWidth
+        onClick={handleChange}
+        sx={{ p: 2, mt: 2, textAlign: "center" }}
+      >
+        <InputLabel id="demo-simple-select-label" sx={{ textAlign: "center" }}>
           Please Select A Category
         </InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={categoryName}
-          label="Age"
+          label="Category"
+        >
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+      </FormControl>
+      <FormControl fullWidth onClick={handleChange} sx={{ p: 2, mt: 2 }}>
+        <InputLabel id="demo-simple-select-label" sx={{ textAlign: "center" }}>
+          Please Select A Question Type
+        </InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={questionType}
+          label="Category"
+        >
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+      </FormControl>
+      <FormControl fullWidth onClick={handleChange} sx={{ p: 2, mt: 2 }}>
+        <InputLabel id="demo-simple-select-label" sx={{ textAlign: "center" }}>
+          Please Select A Difficulty Level
+        </InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={difficulty}
+          label="Category"
+        >
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+      </FormControl>
+      <FormControl fullWidth onClick={handleChange} sx={{ p: 2, mt: 2 }}>
+        <InputLabel id="demo-simple-select-label" sx={{ textAlign: "center" }}>
+          Please Select The Number Of Questions
+        </InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={questions}
+          label="Questions"
         >
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
