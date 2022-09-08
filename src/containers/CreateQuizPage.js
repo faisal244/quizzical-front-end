@@ -4,19 +4,60 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import axios from "axios";
 
 import { useMutation } from "@apollo/client";
-import { useState } from "react";
-import { getResults } from "../api/getResults";
+import { useState, useEffect } from "react";
 
 import { CREATEQUIZ } from "../graphql/mutations";
 
+const allDifficulties = [
+  {
+    name: "easy",
+    value: "easy",
+  },
+  {
+    name: "medium",
+    value: "medium",
+  },
+];
+
 export const CreateQuizPage = () => {
+  // state for all inputs
+  const [categoryName, setCategoryName] = useState("");
+  const [questionType, setType] = useState("");
+  const [difficulty, setDifficulty] = useState("");
+  const [questions, setQuestions] = useState("");
+
   const [
     createQuiz,
     { data: quizData, loading: quizLoading, error: quizError },
   ] = useMutation(CREATEQUIZ);
 
+  const URL = "https://opentdb.com/api_category.php";
+
+  useEffect(() => {
+    console.log("createQuiz");
+    // call a function that makes azios request and sets all the states
+    getResults();
+  }, [URL]);
+
+  const getResults = () => {
+    axios
+      .get(`${URL}`)
+      .then((response) => {
+        console.log(JSON.stringify(response));
+        // once we get the results we set them to state variables
+      })
+      .catch((error) => console.error(`ERROR: ${error}`));
+  };
+
+  const handleCreateQuiz = () => {
+    console.log(categoryName);
+  };
+
+
+  
   const generateQuiz = () => {
     const quizInput = {
       type: quizData.type,
@@ -32,22 +73,14 @@ export const CreateQuizPage = () => {
     // });
   };
 
-  // state for all inputs
-  const [categoryName, setCategoryName] = useState("");
-  const [questionType, setType] = useState("");
-  const [difficulty, setDifficulty] = useState("");
-  const [questions, setQuestions] = useState("");
-
   const handleCategoryChange = (e) => {
     setCategoryName(e.target.value);
-
-    console.log(setCategoryName);
-    console.log("clicked on handleCategoryChange");
+    console.log(e.target.value);
   };
 
   const handleDifficultyChange = (e) => {
     setDifficulty(e.target.value);
-    console.log("clicked on handleDifficultyChange");
+    console.log(e.target.value);
   };
   const handleQuestionTypeChange = (e) => {
     setType(e.target.value);
@@ -76,11 +109,10 @@ export const CreateQuizPage = () => {
           value={categoryName}
           label="Category"
           onChange={handleCategoryChange}
-          
         >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          {allDifficulties.map((difficulty) => (
+            <MenuItem value={difficulty.value}>{difficulty.name}</MenuItem>
+          ))}
         </Select>
       </FormControl>
       <FormControl fullWidth sx={{ p: 1, mt: 3 }}>
@@ -130,7 +162,12 @@ export const CreateQuizPage = () => {
           <MenuItem value={120}>OneTwenty</MenuItem>
           <MenuItem value={130}>OneThirty</MenuItem>
         </Select>
-        <Button variant="contained" color="success" sx={{ p: 1, mt: 2 }}>
+        <Button
+          variant="contained"
+          color="success"
+          sx={{ p: 1, mt: 2 }}
+          onClick={handleCreateQuiz}
+        >
           Create A Quiz
         </Button>
       </FormControl>

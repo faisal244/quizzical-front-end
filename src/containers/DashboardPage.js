@@ -1,7 +1,6 @@
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
-import { getResults } from "../api/getResults";
 
 export const DashboardPage = () => {
   const navigate = useNavigate();
@@ -9,8 +8,6 @@ export const DashboardPage = () => {
   const createQuizPage = () => {
     console.log("clicked create quiz");
     navigate("/createquizpage");
-
-    getResults();
   };
 
   const viewQuizPage = () => {
