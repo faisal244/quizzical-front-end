@@ -20,6 +20,10 @@ const allDifficulties = [
     name: "medium",
     value: "medium",
   },
+  {
+    name: "hard",
+    value: "hard",
+  },
 ];
 
 export const CreateQuizPage = () => {
@@ -56,8 +60,6 @@ export const CreateQuizPage = () => {
     console.log(categoryName);
   };
 
-
-  
   const generateQuiz = () => {
     const quizInput = {
       type: quizData.type,
