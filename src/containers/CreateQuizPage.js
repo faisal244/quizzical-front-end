@@ -26,6 +26,17 @@ const allDifficulties = [
 	},
 ];
 
+const AllQuestionTypes = [
+	{
+		id: "boolean",
+		name: "boolean",
+	},
+	{
+		id: "multiple",
+		name: "multiple",
+	},
+];
+
 const allCategories = [
 	{
 		id: "9",
@@ -218,8 +229,8 @@ export const CreateQuizPage = () => {
 					label="Category"
 					onChange={handleCategoryChange}
 				>
-					{allDifficulties.map((difficulty) => (
-						<MenuItem value={difficulty.value}>{difficulty.name}</MenuItem>
+					{allCategories.map((category) => (
+						<MenuItem value={category.id}>{category.name}</MenuItem>
 					))}
 				</Select>
 			</FormControl>
@@ -240,9 +251,12 @@ export const CreateQuizPage = () => {
 					label="Question"
 					onChange={handleQuestionTypeChange}
 				>
-					<MenuItem value={40}>Fourty</MenuItem>
+					{AllQuestionTypes.map((question) => (
+						<MenuItem value={question.id}>{question.name}</MenuItem>
+					))}
+					{/* <MenuItem value={40}>Fourty</MenuItem>
 					<MenuItem value={50}>Fifty</MenuItem>
-					<MenuItem value={60}>Sixty</MenuItem>
+					<MenuItem value={60}>Sixty</MenuItem> */}
 				</Select>
 			</FormControl>
 			<FormControl
@@ -262,9 +276,12 @@ export const CreateQuizPage = () => {
 					label="Difficulty"
 					onChange={handleDifficultyChange}
 				>
-					<MenuItem value={70}>Seventy</MenuItem>
+					{allDifficulties.map((difficulty) => (
+						<MenuItem value={difficulty.value}>{difficulty.name}</MenuItem>
+					))}
+					{/* <MenuItem value={70}>Seventy</MenuItem>
 					<MenuItem value={80}>Eighty</MenuItem>
-					<MenuItem value={90}>Thirty</MenuItem>
+					<MenuItem value={90}>Thirty</MenuItem> */}
 				</Select>
 			</FormControl>
 			<FormControl
