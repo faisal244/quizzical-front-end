@@ -39,18 +39,7 @@ export const App = () => {
       <BrowserRouter>
         <AppProvider>
           <Stack sx={{ minHeight: "100vh" }} spacing={0}>
-            <NavBar
-              navItems={[
-                {
-                  label: "Login",
-                  path: "/login",
-                },
-                {
-                  label: "Sign Up",
-                  path: "/sign-up",
-                },
-              ]}
-            />
+            <NavBar />
             <AppRoutes />
           </Stack>
         </AppProvider>

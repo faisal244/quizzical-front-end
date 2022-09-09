@@ -22,3 +22,19 @@ export const LOGIN = gql`
     }
   }
 `;
+
+export const CREATEQUIZ = gql`
+  mutation Mutation($createQuizInput: CreateQuizInput!) {
+    createQuiz(createQuizInput: $createQuizInput) {
+      id
+      questions {
+        question
+        incorrectAnswers
+        correctAnswer
+      }
+      category
+      difficulty
+      type
+    }
+  }
+`;

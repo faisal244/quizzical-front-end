@@ -11,31 +11,79 @@ import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
+import { useAuth } from "../context/AppProvider";
+import HomeIcon from "@mui/icons-material/Home";
 
-export const NavBar = ({ navItems }) => {
+export const NavBar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
+
+  // set state for log out
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+  const { isLoggedIn, setIsLoggedIn, setUser } = useAuth();
 
+  const navigator = (event) => {
+    const path = event.target.dataset.path;
+    navigate(path, { replace: true });
+  };
+
+  const logOut = () => {
+    console.log("loggedout");
+
+    //clear from localstorage
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    // render the login sign up page
+    setIsLoggedIn(false);
+    setUser();
+    navigate("/");
+  };
+
+  const navItems = isLoggedIn
+    ? [
+        {
+          label: <HomeIcon />,
+          path: "/",
+          onClick: navigator,
+        },
+        {
+          label: "DashBoard",
+          path: "/dashboard",
+          onClick: navigator,
+        },
+        {
+          label: "Log Out",
+          path: "/logout",
+          onClick: logOut,
+        },
+      ]
+    : [
+        {
+          label: "Login",
+          path: "/login",
+          onClick: navigator,
+        },
+        {
+          label: "Sign Up",
+          path: "/sign-up",
+          onClick: navigator,
+        },
+      ];
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <List>
         {navItems.map((item) => (
           <ListItem key={item.label} disablePadding>
-            <ListItemButton
-              sx={{ textAlign: "center" }}
-              onClick={() => {
-                navigate(item.path, { replace: true });
-              }}
-            >
+            <ListItemButton sx={{ textAlign: "center" }} onClick={item.onClick}>
               <ListItemText primary={item.label} />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
+      <button>Log Out</button>
     </Box>
   );
 
@@ -63,9 +111,8 @@ export const NavBar = ({ navItems }) => {
               <Button
                 key={item.label}
                 sx={{ color: "#fff" }}
-                onClick={() => {
-                  navigate(item.path, { replace: true });
-                }}
+                onClick={item.onClick}
+                data-path={item.path}
               >
                 {item.label}
               </Button>
