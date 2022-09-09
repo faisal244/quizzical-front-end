@@ -4,13 +4,10 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import axios from "axios";
+
 import { useNavigate } from "react-router-dom";
 
-import { useMutation } from "@apollo/client";
 import { useState, useEffect } from "react";
-
-import { CREATEQUIZ } from "../graphql/mutations";
 
 const allDifficulties = [
   {
@@ -147,55 +144,16 @@ export const CreateQuizPage = () => {
   const [questions, setQuestions] = useState("");
   const [emailMessage, setEmailMessage] = useState("");
 
-  const [
-    createQuiz,
-    { data: quizData, loading: quizLoading, error: quizError },
-  ] = useMutation(CREATEQUIZ);
-
-  const URL = "https://opentdb.com/api_category.php";
-
-  useEffect(() => {
-    console.log("createQuiz");
-    // call a function that makes azios request and sets all the states
-    getResults();
-  }, [URL]);
-
-  const getResults = () => {
-    axios
-      .get(`${URL}`)
-      .then((response) => {
-        console.log(JSON.stringify(response));
-        // once we get the results we set them to state variables
-      })
-      .catch((error) => console.error(`ERROR: ${error}`));
-  };
-
   const handleCreateQuiz = () => {
     console.log(categoryName);
-
     // on click button we  navigate view quiz page
     let urlValues = {
       catName: categoryName,
       questionType: questionType,
       difficulty: difficulty,
-      questions: questions
+      questions: questions,
     };
-    navigate("/viewquizpage", {state: urlValues});
-  };
-
-  const generateQuiz = () => {
-    const quizInput = {
-      type: quizData.type,
-      difficulty: quizData.difficulty,
-      category: quizData.category,
-      questions: quizData.question,
-    };
-
-    // quiz({
-    //   variables: {
-    //     quizInput,
-    //   },
-    // });
+    navigate("/viewquizpage", { state: urlValues });
   };
 
   const handleCategoryChange = (e) => {
