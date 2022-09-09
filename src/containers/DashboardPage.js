@@ -6,12 +6,10 @@ export const DashboardPage = () => {
   const navigate = useNavigate();
 
   const createQuizPage = () => {
-    console.log("clicked create quiz");
-    navigate("/createquizpage");
+    navigate("/create-quiz");
   };
 
   const viewQuizPage = () => {
-    console.log("view quizes");
     navigate("/viewquizpage");
   };
 

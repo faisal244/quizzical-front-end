@@ -22,11 +22,10 @@ export const AppRoutes = () => {
       {isLoggedIn && (
         <>
           <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/viewquizpage" element={<ViewQuizPage />} />
+          <Route path="/create-quiz" element={<CreateQuizPage />} />
         </>
       )}
-
-      <Route path="/viewquizpage" element={<ViewQuizPage />} />
-      <Route path="/createquizpage" element={<CreateQuizPage />} />
     </Routes>
   );
 };

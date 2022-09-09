@@ -1,272 +1,336 @@
+import { useState, useEffect } from "react";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import Container from "@mui/material/Container";
+import { useMutation } from "@apollo/client";
+import { CREATEQUIZ } from "../graphql/mutations";
 
-import { useNavigate } from "react-router-dom";
-
-import { useState, useEffect } from "react";
-
-const allDifficulties = [
+const difficulties = [
   {
-    name: "easy",
+    name: "Easy",
     value: "easy",
   },
   {
-    name: "medium",
+    name: "Medium",
     value: "medium",
   },
   {
-    name: "hard",
+    name: "Hard",
     value: "hard",
   },
 ];
 
-const AllQuestionTypes = [
+const types = [
   {
-    id: "boolean",
-    name: "boolean",
+    value: "boolean",
+    name: "True/False",
   },
   {
-    id: "multiple",
-    name: "multiple",
+    value: "multiple",
+    name: "Multiple Choice",
   },
 ];
 
-const allCategories = [
+const categories = [
   {
-    id: "9",
+    value: "9",
     name: "General Knowledge",
   },
   {
-    id: "10",
+    value: "10",
     name: "Entertainment: Books",
   },
   {
-    id: "11",
+    value: "11",
     name: "Entertainment: Film",
   },
   {
-    id: "12",
+    value: "12",
     name: "Entertainment: Music",
   },
   {
-    id: "13",
+    value: "13",
     name: "Entertainment: Musicals & Theatres",
   },
   {
-    id: "14",
+    value: "14",
     name: "Entertainment: Television",
   },
   {
-    id: "15",
+    value: "15",
     name: "Entertainment: Video Games",
   },
   {
-    id: "16",
+    value: "16",
     name: "Entertainment: Board Games",
   },
   {
-    id: "17",
+    value: "17",
     name: "Science & Nature",
   },
   {
-    id: "18",
+    value: "18",
     name: "Science: Computers",
   },
-
   {
-    id: "19",
+    value: "19",
     name: "Science: Mathematics",
   },
   {
-    id: "20",
+    value: "20",
     name: "Mythology",
   },
   {
-    id: "21",
+    value: "21",
     name: "Sports",
   },
   {
-    id: "22",
+    value: "22",
     name: "Geography",
   },
   {
-    id: "23",
+    value: "23",
     name: "History",
   },
   {
-    id: "24",
+    value: "24",
     name: "Politics",
   },
   {
-    id: "25",
+    value: "25",
     name: "Art",
   },
   {
-    id: "26",
+    value: "26",
     name: "Celebrities",
   },
   {
-    id: "27",
+    value: "27",
     name: "Animals",
   },
   {
-    id: "28",
+    value: "28",
     name: "Vehicles",
   },
   {
-    id: "29",
+    value: "29",
     name: "Entertainment: Comics",
   },
   {
-    id: "30",
+    value: "30",
     name: "Science: Gadgets",
   },
   {
-    id: "31",
+    value: "31",
     name: "Entertainment: Japanese Anime & Manga",
   },
   {
-    id: "32",
+    value: "32",
     name: "Entertainment: Cartoon & Animations",
   },
 ];
 
 export const CreateQuizPage = () => {
-  const navigate = useNavigate();
-  // state for all inputs
-  const [categoryName, setCategoryName] = useState("");
-  const [questionType, setType] = useState("");
+  const [createQuiz, { data, loading, error }] = useMutation(CREATEQUIZ);
+  const [title, setTitle] = useState("");
+  const [category, setCategory] = useState("");
+  const [type, setType] = useState("");
   const [difficulty, setDifficulty] = useState("");
-  const [questions, setQuestions] = useState("");
-  const [emailMessage, setEmailMessage] = useState("");
+  const [questions, setQuestions] = useState("10");
+  const [quizData, setQuizData] = useState();
 
-  const handleCreateQuiz = () => {
-    console.log(categoryName);
-    // on click button we  navigate view quiz page
-    let urlValues = {
-      catName: categoryName,
-      questionType: questionType,
-      difficulty: difficulty,
-      questions: questions,
-    };
-    navigate("/viewquizpage", { state: urlValues });
+  const getQuizData = async () => {
+    const url = `https://opentdb.com/api.php?amount=${questions}&category=${category}&difficulty=${difficulty}&type=${type}`;
+
+    const response = await fetch(url);
+
+    const data = await response.json();
+
+    setQuizData(data);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    await getQuizData();
+  };
+
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
   };
 
   const handleCategoryChange = (e) => {
-    setCategoryName(e.target.value);
-    console.log(e.target.value);
+    setCategory(e.target.value);
   };
 
   const handleDifficultyChange = (e) => {
     setDifficulty(e.target.value);
-    console.log(e.target.value);
   };
+
   const handleQuestionTypeChange = (e) => {
     setType(e.target.value);
-    console.log("clicked on handleQuestionTypeChange");
   };
+
   const handleQuestionChange = (e) => {
     setQuestions(e.target.value);
+  };
 
-    const regex = "^[1-9][0-9]?$|^50$";
+  const handleCreateQuiz = () => {
+    const quizQuestions = quizData.results.map(
+      ({ question, incorrect_answers, correct_answer }) => {
+        return {
+          question,
+          incorrectAnswers: incorrect_answers,
+          correctAnswer: correct_answer,
+        };
+      }
+    );
 
-    if (e.target.value.match(regex)) {
-      setEmailMessage("matches regex");
-    } else {
-      setEmailMessage("regex does not match");
-    }
+    const { name: categoryName } = categories.find(
+      (each) => each.value === category
+    );
 
-    console.log("clicked on handleQuestionChange");
+    const { name: difficultyName } = difficulties.find(
+      (each) => each.value === difficulty
+    );
+
+    const { name: typeName } = types.find((each) => each.value === type);
+
+    const createQuizInput = {
+      title,
+      category: categoryName,
+      difficulty: difficultyName,
+      type: typeName,
+      questions: quizQuestions,
+    };
+
+    createQuiz({
+      variables: { createQuizInput },
+    });
   };
 
   return (
-    <div>
-      <TextField
-        id="outlined-basic"
-        label="Title"
-        variant="outlined"
-        sx={{ p: 1, mt: 3, textAlign: "center" }}
-      />
-
-      <FormControl fullWidth sx={{ p: 1, mt: 3, textAlign: "center" }}>
-        <InputLabel id="demo-simple-select-label" sx={{ textAlign: "center" }}>
-          Please Select A Category
-        </InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={categoryName}
-          label="Category"
-          onChange={handleCategoryChange}
-        >
-          {allCategories.map((category) => (
-            <MenuItem value={category.id}>{category.name}</MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-      <FormControl fullWidth sx={{ p: 1, mt: 3 }}>
-        <InputLabel id="demo-simple-select-label" sx={{ textAlign: "center" }}>
-          Please Select A Question Type
-        </InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={questionType}
-          label="Question"
-          onChange={handleQuestionTypeChange}
-        >
-          {AllQuestionTypes.map((question) => (
-            <MenuItem value={question.id}>{question.name}</MenuItem>
-          ))}
-          {/* <MenuItem value={40}>Fourty</MenuItem>
-					<MenuItem value={50}>Fifty</MenuItem>
-					<MenuItem value={60}>Sixty</MenuItem> */}
-        </Select>
-      </FormControl>
-      <FormControl fullWidth sx={{ p: 1, mt: 3 }}>
-        <InputLabel id="demo-simple-select-label" sx={{ textAlign: "center" }}>
-          Please Select A Difficulty Level
-        </InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={difficulty}
-          label="Difficulty"
-          onChange={handleDifficultyChange}
-        >
-          {allDifficulties.map((difficulty) => (
-            <MenuItem value={difficulty.value}>{difficulty.name}</MenuItem>
-          ))}
-          {/* <MenuItem value={70}>Seventy</MenuItem>
-					<MenuItem value={80}>Eighty</MenuItem>
-					<MenuItem value={90}>Thirty</MenuItem> */}
-        </Select>
-      </FormControl>
-      <FormControl fullWidth sx={{ p: 1, mt: 3 }}>
-        <InputLabel id="demo-simple-select-label" sx={{ textAlign: "center" }}>
-          Please Select The Number Of Questions
-        </InputLabel>
-        <TextField
-          id="outlined-basic"
-          label="Number of questions"
-          variant="outlined"
-          sx={{ p: 1, mt: 3, textAlign: "center" }}
-          onChange={handleQuestionChange}
-        />
-        <div>{emailMessage}</div>
-        <Button
-          variant="contained"
-          color="success"
-          sx={{ p: 1, mt: 2 }}
-          onClick={handleCreateQuiz}
-        >
-          Create A Quiz
-        </Button>
-      </FormControl>
-    </div>
+    <Container maxWidth="md">
+      <Box component="form" onSubmit={handleSubmit}>
+        <Stack spacing={3} sx={{ mx: 2 }}>
+          <FormControl fullWidth sx={{ p: 1, mt: 3, textAlign: "center" }}>
+            <TextField
+              id="outlined-basic"
+              label="Title"
+              variant="outlined"
+              fullWidth
+              onChange={handleTitleChange}
+            />
+          </FormControl>
+          <FormControl fullWidth sx={{ p: 1, mt: 3, textAlign: "center" }}>
+            <InputLabel
+              id="demo-simple-select-label"
+              sx={{ textAlign: "center" }}
+            >
+              Please Select A Category
+            </InputLabel>
+            <Select
+              value={category}
+              label="Category"
+              onChange={handleCategoryChange}
+            >
+              {categories.map((category) => (
+                <MenuItem
+                  key={`category-${category.value}`}
+                  value={category.value}
+                >
+                  {category.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl fullWidth sx={{ p: 1, mt: 3 }}>
+            <InputLabel
+              id="demo-simple-select-label"
+              sx={{ textAlign: "center" }}
+            >
+              Please Select A Question Type
+            </InputLabel>
+            <Select
+              value={type}
+              label="Question"
+              onChange={handleQuestionTypeChange}
+            >
+              {types.map((type) => (
+                <MenuItem key={`type-${type.value}`} value={type.value}>
+                  {type.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl fullWidth sx={{ p: 1, mt: 3 }}>
+            <InputLabel
+              id="demo-simple-select-label"
+              sx={{ textAlign: "center" }}
+            >
+              Please Select A Difficulty Level
+            </InputLabel>
+            <Select
+              value={difficulty}
+              label="Difficulty"
+              onChange={handleDifficultyChange}
+            >
+              {difficulties.map((difficulty) => (
+                <MenuItem
+                  key={`difficulty-${difficulty.value}`}
+                  value={difficulty.value}
+                >
+                  {difficulty.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl fullWidth sx={{ p: 1, mt: 3 }}>
+            <InputLabel
+              id="demo-simple-select-label"
+              sx={{ textAlign: "center" }}
+            >
+              Please Select The Number Of Questions
+            </InputLabel>
+            <Select
+              value={questions}
+              label="Number of questions"
+              onChange={handleQuestionChange}
+            >
+              {["10", "15", "20"].map((each) => (
+                <MenuItem key={`questions-${each}`} value={each}>
+                  {each}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl fullWidth sx={{ p: 1, mt: 3 }}>
+            <Button
+              type="submit"
+              variant="contained"
+              color="success"
+              sx={{ p: 1, mt: 2 }}
+            >
+              Create A Quiz
+            </Button>
+          </FormControl>
+        </Stack>
+      </Box>
+      <Box>
+        {quizData ? <pre>{JSON.stringify(quizData, null, 2)}</pre> : "No Data"}
+      </Box>
+      {quizData && (
+        <Box>
+          <Button onClick={() => handleCreateQuiz()}>Create Quiz</Button>
+          <Button onClick={() => getQuizData()}>Refetch Quiz</Button>
+        </Box>
+      )}
+    </Container>
   );
 };
