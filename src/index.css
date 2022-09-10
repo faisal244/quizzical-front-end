@@ -98,3 +98,16 @@ body {
 .questions {
   text-align: center;
 }
+
+.create-quiz-cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-styles {
+  border: 2px solid var(--pacific-blue);
+  margin-top: 2rem;
+}

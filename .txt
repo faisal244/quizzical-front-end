@@ -1,4 +1,0 @@
- {quizData.map((each) => {
-          console.log(each.category);
-          return <div>{each.category}</div>;
-        })}
