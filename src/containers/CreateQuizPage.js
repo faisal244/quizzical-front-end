@@ -8,7 +8,6 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Container from "@mui/material/Container";
-import { Quiz } from "../components/Quiz";
 import { useMutation } from "@apollo/client";
 import { CREATEQUIZ } from "../graphql/mutations";
 
@@ -323,8 +322,6 @@ export const CreateQuizPage = () => {
           </FormControl>
         </Stack>
       </Box>
-
-      <Box>{quizData ? <Quiz quizData={quizData.results} /> : "No Data"}</Box>
 
       {quizData && (
         <Box>
