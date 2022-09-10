@@ -3,7 +3,6 @@ import { Routes, Route } from "react-router-dom";
 import { LoginPage } from "./containers/LoginPage";
 import { SignUpPage } from "./containers/SignUpPage";
 import { DashboardPage } from "./containers/DashboardPage";
-import { ViewQuizPage } from "./containers/ViewQuizPage";
 import { CreateQuizPage } from "./containers/CreateQuizPage";
 import { useAuth } from "./context/AppProvider";
 
@@ -22,7 +21,6 @@ export const AppRoutes = () => {
       {isLoggedIn && (
         <>
           <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/viewquizpage" element={<ViewQuizPage />} />
           <Route path="/create-quiz" element={<CreateQuizPage />} />
         </>
       )}
