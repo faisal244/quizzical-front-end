@@ -6,8 +6,8 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
+import { Box } from "@mui/system";
 import Container from "@mui/material/Container";
 import { useMutation } from "@apollo/client";
 import { CREATEQUIZ } from "../graphql/mutations";
@@ -214,6 +214,8 @@ export const CreateQuizPage = () => {
     createQuiz({
       variables: { createQuizInput },
     });
+
+    console.log({ createQuizInput });
   };
 
   return (
@@ -323,12 +325,44 @@ export const CreateQuizPage = () => {
           </FormControl>
         </Stack>
       </Box>
-      <Box>{quizData ? <Quiz quizData={quizData.results} /> : "No Data"}</Box>
+      <Box>
+        {quizData ? (
+          <Quiz quizData={quizData.results} title={title} />
+        ) : (
+          "No Data"
+        )}
+      </Box>
       {quizData && (
-        <Box>
-          <Button onClick={() => handleCreateQuiz()}>Create Quiz</Button>
-          <Button onClick={() => getQuizData()}>Refetch Quiz</Button>
-        </Box>
+        <Stack
+          spacing={2}
+          direction="row"
+          justifyContent="center"
+          marginTop="1.5rem"
+          paddingTop="2.5rem"
+        >
+          <Button
+            onClick={() => getQuizData()}
+            sx={{
+              maxWidth: 200,
+              backgroundColor: "teal",
+              color: "whitesmoke",
+              borderRadius: "2",
+            }}
+          >
+            Refetch Quiz
+          </Button>
+          <Button
+            sx={{
+              maxWidth: 200,
+              backgroundColor: "green",
+              color: "whitesmoke",
+              borderRadius: "2",
+            }}
+            onClick={() => handleCreateQuiz()}
+          >
+            Save Quiz As Quiz Master
+          </Button>
+        </Stack>
       )}
     </Container>
   );
