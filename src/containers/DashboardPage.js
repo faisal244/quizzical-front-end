@@ -1,9 +1,12 @@
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import { Quiz } from "../components/Quiz";
+import { useQuery } from "@apollo/client";
+import { GETMYQUIZES } from "../graphql/queries";
 import { useNavigate } from "react-router-dom";
 
 export const DashboardPage = () => {
+  const { data, loading, error } = useQuery(GETMYQUIZES);
+
   const navigate = useNavigate();
 
   const createQuizPage = () => {
@@ -13,6 +16,8 @@ export const DashboardPage = () => {
   const viewQuizPage = () => {
     console.log("viewquizclicked");
     //  in here i want to render the saved quizes from the DB in the card format
+    <div>{data}</div>;
+    console.log(data);
   };
 
   return (
