@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import InputLabel from "@mui/material/InputLabel";
+import { Quiz } from "../components/Quiz";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
@@ -322,9 +323,7 @@ export const CreateQuizPage = () => {
           </FormControl>
         </Stack>
       </Box>
-      <Box>
-        {quizData ? <pre>{JSON.stringify(quizData, null, 2)}</pre> : "No Data"}
-      </Box>
+      <Box>{quizData ? <Quiz quizData={quizData.results} /> : "No Data"}</Box>
       {quizData && (
         <Box>
           <Button onClick={() => handleCreateQuiz()}>Create Quiz</Button>
