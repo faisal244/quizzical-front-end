@@ -1,9 +1,7 @@
-import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import basicImage from "../images/scores.jpg";
 
 export const Quiz = ({ quizData, title }) => {
-
   console.log(quizData);
 
   return (

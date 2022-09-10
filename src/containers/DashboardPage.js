@@ -1,5 +1,6 @@
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
+import { Quiz } from "../components/Quiz";
 import { useNavigate } from "react-router-dom";
 
 export const DashboardPage = () => {
@@ -10,7 +11,8 @@ export const DashboardPage = () => {
   };
 
   const viewQuizPage = () => {
-    navigate("/viewquizpage");
+    console.log("viewquizclicked");
+    //  in here i want to render the saved quizes from the DB in the card format
   };
 
   return (
