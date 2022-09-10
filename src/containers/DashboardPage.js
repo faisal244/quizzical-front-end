@@ -15,9 +15,9 @@ export const DashboardPage = () => {
 
   const viewQuizPage = () => {
     console.log("viewquizclicked");
+    console.log(data.getMyQuiz.quizzes);
     //  in here i want to render the saved quizes from the DB in the card format
-    <div>{data}</div>;
-    console.log(data);
+    <div>This is your data:{data.getMyQuiz.quizzes.difficulty}</div>;
   };
 
   return (

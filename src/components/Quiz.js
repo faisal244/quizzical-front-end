@@ -26,7 +26,6 @@ export const Quiz = ({ quizData, title }) => {
           </Card>
         );
       })}
-      ;
     </div>
   );
 };
