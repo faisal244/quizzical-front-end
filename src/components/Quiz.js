@@ -1,23 +1,29 @@
+import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
 export const Quiz = ({ quizData }) => {
   console.log(quizData);
+
   return (
     <div>
-      <Card style={{ width: "18rem" }}>
-        <Card.Body>
-          Your Category Is :
-          {quizData.slice(0, 1).map((each) => {
-            return <Card.Title>{each.category} </Card.Title>;
-          })}
-          <Card.Text>
-            This is a list of your questions
-            {quizData.map((each) => {
-              return <li>{each.question} </li>;
-            })}
-          </Card.Text>
-        </Card.Body>
-      </Card>
+      {quizData.map((each) => {
+        console.log(each.category);
+        return (
+          <Card style={{ width: "18rem" }}>
+            <Card.Img variant="top" src="holder.js/100px180" />
+            <Card.Body>
+              <Card.Title>{each.category}</Card.Title>
+              <Card.Text>{each.question}</Card.Text>
+              <Card.Text>{each.correct_answer}</Card.Text>
+              <Card.Text>{each.incorrect_answers}</Card.Text>
+              <Card.Text>{each.difficulty}</Card.Text>
+              <Card.Text>{each.type}</Card.Text>
+              <Button variant="primary">Go somewhere</Button>
+            </Card.Body>
+          </Card>
+        );
+      })}
+      ;
     </div>
   );
 };

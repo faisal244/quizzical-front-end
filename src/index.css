@@ -94,3 +94,7 @@ body {
 .text {
   font-size: 3rem;
 }
+
+.questions {
+  text-align: center;
+}

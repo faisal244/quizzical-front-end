@@ -318,7 +318,7 @@ export const CreateQuizPage = () => {
               color="success"
               sx={{ p: 1, mt: 2 }}
             >
-              Create A Quiz
+              Generate A Quiz
             </Button>
           </FormControl>
         </Stack>
