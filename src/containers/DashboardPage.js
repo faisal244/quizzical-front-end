@@ -4,9 +4,10 @@ import Button from "@mui/material/Button";
 import { useQuery } from "@apollo/client";
 import { GETMYQUIZES } from "../graphql/queries";
 import { useNavigate } from "react-router-dom";
-import { flexbox } from "@mui/system";
+import { useState } from "react";
 
 export const DashboardPage = () => {
+  const [viewAllQuizesBtn, setAllQuizesButton] = useState(false);
   const { data, loading, error } = useQuery(GETMYQUIZES);
 
   const navigate = useNavigate();
@@ -18,20 +19,15 @@ export const DashboardPage = () => {
     navigate("/create-quiz");
   };
 
-  const viewQuizPage = () => {
-<<<<<<< HEAD
-    //   console.log("viewquizclicked");
-    //   //  in here i want to render the saved quizes from the DB in the card format
-    //   console.log(data);
-    //   console.log(data.getMyQuiz.quizzes.map((item) => item.category));
-=======
-    console.log("viewquizclicked");
-    console.log(data.getMyQuiz.quizzes);
-    //  in here i want to render the saved quizes from the DB in the card format
-    <div>This is your data:{data.getMyQuiz.quizzes.difficulty}</div>;
->>>>>>> 73bdfe071da48f4263e4ee1d11dd2575f5deb86e
+  const handleViewQuiz = (item) => {
+    console.log(item);
   };
 
+  const viewQuizes = () => {
+    setAllQuizesButton(true);
+  };
+
+  const handleDeleteQuiz = () => {};
   return (
     <div className="container">
       <div className="jumbotron">
@@ -66,47 +62,65 @@ export const DashboardPage = () => {
             <Button
               variant="text"
               className="create-quiz"
-              onClick={viewQuizPage}
+              onClick={viewQuizes}
               sx={{
                 backgroundColor: "secondary.main",
                 color: "white",
                 borderRadius: "2",
               }}
             >
+              {viewAllQuizesBtn && (
+                <div className="bg-light border">
+                  {data.getMyQuiz.quizzes.map((item) => (
+                    <Card style={{ width: "18rem", height: "10rem" }}>
+                      <Card.Body>
+                        <Card.Title className="m-4">
+                          Title:{item.title}
+                        </Card.Title>
+                        <Card.Subtitle className="mb-2 text-muted">
+                          QuizID:{item.id}
+                        </Card.Subtitle>
+                        <Card.Subtitle className="mb-2 text-muted">
+                          Category:{item.category}
+                        </Card.Subtitle>
+                        <Card.Subtitle className="mb-2 text-muted">
+                          Difficulty:{item.difficulty}
+                        </Card.Subtitle>
+                        <Card.Subtitle className="mb-2 text-muted">
+                          Type:{item.type}
+                        </Card.Subtitle>
+
+                        <Button
+                          sx={{
+                            maxWidth: 200,
+                            backgroundColor: "green",
+                            color: "whitesmoke",
+                            borderRadius: "2",
+                          }}
+                          onClick={() => handleViewQuiz(item.id)}
+                        >
+                          ViewQuiz
+                        </Button>
+                        <Button
+                          sx={{
+                            maxWidth: 200,
+                            backgroundColor: "green",
+                            color: "whitesmoke",
+                            borderRadius: "2",
+                          }}
+                          onClick={() => handleDeleteQuiz()}
+                        >
+                          Delete Quiz
+                        </Button>
+                      </Card.Body>
+                    </Card>
+                  ))}
+                </div>
+              )}
               View All Quizes
             </Button>
           </Stack>
         </div>
-      </div>
-      <div className="bg-light border">
-        {data.getMyQuiz.quizzes.map((item) => (
-          <Card style={{ width: "18rem", height: "10rem" }}>
-            <Card.Body>
-              <Card.Title className="m-4">Title:{item.title}</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
-                Category:{item.category}
-              </Card.Subtitle>
-              <Card.Subtitle className="mb-2 text-muted">
-                Difficulty:{item.difficulty}
-              </Card.Subtitle>
-              <Card.Subtitle className="mb-2 text-muted">
-                Type:{item.type}
-              </Card.Subtitle>
-              <Button
-                sx={{
-                  maxWidth: 200,
-                  backgroundColor: "green",
-                  color: "whitesmoke",
-                  borderRadius: "2",
-                }}
-                // onClick={() => handleViewQuiz()}
-              >
-                ViewQuiz
-              </Button>
-              <Card.Link href="#">Delete Quiz</Card.Link>
-            </Card.Body>
-          </Card>
-        ))}
       </div>
     </div>
   );
