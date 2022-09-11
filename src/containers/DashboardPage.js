@@ -21,6 +21,16 @@ export const DashboardPage = () => {
 
   const handleViewQuiz = (item) => {
     console.log(item);
+<<<<<<< HEAD
+=======
+  };
+
+  const viewQuizPage = () => {
+    console.log("viewquizclicked");
+    console.log(data.getMyQuiz.quizzes);
+    //  in here i want to render the saved quizes from the DB in the card format
+    <div>This is your data:{data.getMyQuiz.quizzes.difficulty}</div>;
+>>>>>>> 1235aff1ba675cab727a26d7b54bdd1545d3d08d
   };
 
   const viewQuizes = () => {
@@ -122,6 +132,49 @@ export const DashboardPage = () => {
           </Stack>
         </div>
       </div>
+<<<<<<< HEAD
+=======
+      <div className="bg-light border">
+        {data.getMyQuiz.quizzes.map((item) => (
+          <Card style={{ width: "18rem", height: "10rem" }}>
+            <Card.Body>
+              <Card.Title className="m-4">Title:{item.title}</Card.Title>
+              <Card.Subtitle className="mb-2 text-muted">
+                Category:{item.category}
+              </Card.Subtitle>
+              <Card.Subtitle className="mb-2 text-muted">
+                Difficulty:{item.difficulty}
+              </Card.Subtitle>
+              <Card.Subtitle className="mb-2 text-muted">
+                Type:{item.type}
+              </Card.Subtitle>
+              <Button
+                sx={{
+                  maxWidth: 200,
+                  backgroundColor: "green",
+                  color: "whitesmoke",
+                  borderRadius: "2",
+                }}
+                onClick={() => handleViewQuiz(item.id)}
+              >
+                ViewQuiz
+              </Button>
+              <Button
+                sx={{
+                  maxWidth: 200,
+                  backgroundColor: "green",
+                  color: "whitesmoke",
+                  borderRadius: "2",
+                }}
+                onClick={() => handleDeleteQuiz(item.id)}
+              >
+                Delete
+              </Button>
+            </Card.Body>
+          </Card>
+        ))}
+      </div>
+>>>>>>> 1235aff1ba675cab727a26d7b54bdd1545d3d08d
     </div>
   );
 };
