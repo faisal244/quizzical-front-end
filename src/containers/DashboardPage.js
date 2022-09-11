@@ -21,16 +21,6 @@ export const DashboardPage = () => {
 
   const handleViewQuiz = (item) => {
     console.log(item);
-<<<<<<< HEAD
-=======
-  };
-
-  const viewQuizPage = () => {
-    console.log("viewquizclicked");
-    console.log(data.getMyQuiz.quizzes);
-    //  in here i want to render the saved quizes from the DB in the card format
-    <div>This is your data:{data.getMyQuiz.quizzes.difficulty}</div>;
->>>>>>> 1235aff1ba675cab727a26d7b54bdd1545d3d08d
   };
 
   const viewQuizes = () => {
@@ -132,8 +122,6 @@ export const DashboardPage = () => {
           </Stack>
         </div>
       </div>
-<<<<<<< HEAD
-=======
       <div className="bg-light border">
         {data.getMyQuiz.quizzes.map((item) => (
           <Card style={{ width: "18rem", height: "10rem" }}>
@@ -174,7 +162,6 @@ export const DashboardPage = () => {
           </Card>
         ))}
       </div>
->>>>>>> 1235aff1ba675cab727a26d7b54bdd1545d3d08d
     </div>
   );
 };
