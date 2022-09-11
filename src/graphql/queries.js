@@ -20,3 +20,19 @@ export const GETMYQUIZES = gql`
     }
   }
 `;
+
+export const GETSINGLEQUIZ = gql`
+  query GetQuiz($getQuizId: ID!) {
+    getQuiz(id: $getQuizId) {
+      id
+      questions {
+        correctAnswer
+        incorrectAnswers
+        question
+      }
+      category
+      difficulty
+      type
+    }
+  }
+`;
