@@ -18,18 +18,15 @@ export const DashboardPage = () => {
     navigate("/create-quiz");
   };
 
+  const handleViewQuiz = (item) => {
+    console.log(item);
+  };
+
   const viewQuizPage = () => {
-<<<<<<< HEAD
-    //   console.log("viewquizclicked");
-    //   //  in here i want to render the saved quizes from the DB in the card format
-    //   console.log(data);
-    //   console.log(data.getMyQuiz.quizzes.map((item) => item.category));
-=======
     console.log("viewquizclicked");
     console.log(data.getMyQuiz.quizzes);
     //  in here i want to render the saved quizes from the DB in the card format
     <div>This is your data:{data.getMyQuiz.quizzes.difficulty}</div>;
->>>>>>> 73bdfe071da48f4263e4ee1d11dd2575f5deb86e
   };
 
   return (
@@ -99,11 +96,21 @@ export const DashboardPage = () => {
                   color: "whitesmoke",
                   borderRadius: "2",
                 }}
-                // onClick={() => handleViewQuiz()}
+                onClick={() => handleViewQuiz(item.id)}
               >
                 ViewQuiz
               </Button>
-              <Card.Link href="#">Delete Quiz</Card.Link>
+              <Button
+                sx={{
+                  maxWidth: 200,
+                  backgroundColor: "green",
+                  color: "whitesmoke",
+                  borderRadius: "2",
+                }}
+                onClick={() => handleDeleteQuiz(item.id)}
+              >
+                Delete
+              </Button>
             </Card.Body>
           </Card>
         ))}
