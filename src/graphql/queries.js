@@ -13,9 +13,9 @@ export const GETMYQUIZES = gql`
           correctAnswer
         }
         id
-        category
-        difficulty
         type
+        difficulty
+        category
       }
     }
   }

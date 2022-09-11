@@ -38,3 +38,14 @@ export const CREATEQUIZ = gql`
     }
   }
 `;
+
+export const DELETEQUIZ = gql`
+  mutation Mutation($deleteQuizId: ID!) {
+    deleteQuiz(id: $deleteQuizId) {
+      id
+      category
+      difficulty
+      type
+    }
+  }
+`;

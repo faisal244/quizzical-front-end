@@ -9,6 +9,7 @@ import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import { Box } from "@mui/system";
 import Container from "@mui/material/Container";
+import { useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { CREATEQUIZ } from "../graphql/mutations";
 
@@ -138,6 +139,7 @@ const categories = [
 ];
 
 export const CreateQuizPage = () => {
+  const navigate = useNavigate();
   const [createQuiz, { data, loading, error }] = useMutation(CREATEQUIZ);
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
@@ -215,6 +217,7 @@ export const CreateQuizPage = () => {
       variables: { createQuizInput },
     });
 
+    navigate("/dashboard");
     console.log({ createQuizInput });
   };
 
@@ -306,7 +309,7 @@ export const CreateQuizPage = () => {
               label="Number of questions"
               onChange={handleQuestionChange}
             >
-              {["10", "15", "20"].map((each) => (
+              {["10", "15", "20", "25", "30", "40", "45", "50"].map((each) => (
                 <MenuItem key={`questions-${each}`} value={each}>
                   {each}
                 </MenuItem>
@@ -360,7 +363,7 @@ export const CreateQuizPage = () => {
             }}
             onClick={() => handleCreateQuiz()}
           >
-            Save Quiz As Quiz Master
+            Save Quiz As Quiz Master And View In DashBoard
           </Button>
         </Stack>
       )}
