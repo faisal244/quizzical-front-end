@@ -325,6 +325,7 @@ export const CreateQuizPage = () => {
           </FormControl>
         </Stack>
       </Box>
+
       <Box>
         {quizData ? (
           <Quiz quizData={quizData.results} title={title} />
@@ -332,6 +333,7 @@ export const CreateQuizPage = () => {
           "No Data"
         )}
       </Box>
+
       {quizData && (
         <Stack
           spacing={2}
