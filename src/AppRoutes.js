@@ -3,6 +3,7 @@ import { LoginPage } from "./containers/LoginPage";
 import { SignUpPage } from "./containers/SignUpPage";
 import { DashboardPage } from "./containers/DashboardPage";
 import { CreateQuizPage } from "./containers/CreateQuizPage";
+import { Introduction } from "./containers/Introduction";
 import { useAuth } from "./context/AppProvider";
 
 export const AppRoutes = () => {
@@ -19,8 +20,8 @@ export const AppRoutes = () => {
 
       {isLoggedIn && (
         <>
+          <Route path="/introduction" element={<Introduction />} />
           <Route path="/dashboard" element={<DashboardPage />} />
-
           <Route path="/create-quiz" element={<CreateQuizPage />} />
         </>
       )}

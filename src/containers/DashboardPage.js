@@ -8,6 +8,7 @@ import { useState } from "react";
 
 export const DashboardPage = () => {
   const [viewAllQuizesBtn, setAllQuizesButton] = useState(false);
+
   const { data, loading, error } = useQuery(GETMYQUIZES);
 
   const navigate = useNavigate();

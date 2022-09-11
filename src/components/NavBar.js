@@ -46,7 +46,7 @@ export const NavBar = () => {
     ? [
         {
           label: <HomeIcon />,
-          path: "/",
+          path: "/introduction",
           onClick: navigator,
         },
         {
