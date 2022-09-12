@@ -7,6 +7,7 @@ import { Introduction } from "./containers/Introduction";
 import Hero from "components/hero/FullWidthWithImage";
 import { useAuth } from "./context/AppProvider";
 import { Homepage } from "./containers/Homepage";
+import { Footer } from "components/footers/MiniCenteredFooter";
 
 export const AppRoutes = () => {
 	const { isLoggedIn } = useAuth();
