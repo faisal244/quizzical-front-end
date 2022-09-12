@@ -39,14 +39,14 @@ export const NavBar = () => {
     // render the login sign up page
     setIsLoggedIn(false);
     setUser();
-    navigate("/");
+    navigate("/introduction");
   };
 
   const navItems = isLoggedIn
     ? [
         {
           label: <HomeIcon />,
-          path: "/",
+          path: "/introduction",
           onClick: navigator,
         },
         {
@@ -83,7 +83,6 @@ export const NavBar = () => {
           </ListItem>
         ))}
       </List>
-      <button>Log Out</button>
     </Box>
   );
 

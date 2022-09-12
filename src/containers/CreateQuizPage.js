@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
 import InputLabel from "@mui/material/InputLabel";
+import { Quiz } from "../components/Quiz";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
+import { Box } from "@mui/system";
 import Container from "@mui/material/Container";
+import { useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { CREATEQUIZ } from "../graphql/mutations";
 
@@ -137,6 +139,7 @@ const categories = [
 ];
 
 export const CreateQuizPage = () => {
+  const navigate = useNavigate();
   const [createQuiz, { data, loading, error }] = useMutation(CREATEQUIZ);
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
@@ -213,6 +216,9 @@ export const CreateQuizPage = () => {
     createQuiz({
       variables: { createQuizInput },
     });
+
+    navigate("/dashboard");
+    console.log({ createQuizInput });
   };
 
   return (
@@ -303,7 +309,7 @@ export const CreateQuizPage = () => {
               label="Number of questions"
               onChange={handleQuestionChange}
             >
-              {["10", "15", "20"].map((each) => (
+              {["10", "15", "20", "25", "30", "40", "45", "50"].map((each) => (
                 <MenuItem key={`questions-${each}`} value={each}>
                   {each}
                 </MenuItem>
@@ -317,17 +323,51 @@ export const CreateQuizPage = () => {
               color="success"
               sx={{ p: 1, mt: 2 }}
             >
-              Create A Quiz
+              Generate A Quiz
             </Button>
           </FormControl>
         </Stack>
       </Box>
 
+      <Box>
+        {quizData ? (
+          <Quiz quizData={quizData.results} title={title} />
+        ) : (
+          "No Data"
+        )}
+      </Box>
+
       {quizData && (
-        <Box>
-          <Button onClick={() => handleCreateQuiz()}>Create Quiz</Button>
-          <Button onClick={() => getQuizData()}>Refetch Quiz</Button>
-        </Box>
+        <Stack
+          spacing={2}
+          direction="row"
+          justifyContent="center"
+          marginTop="1.5rem"
+          paddingTop="2.5rem"
+        >
+          <Button
+            onClick={() => getQuizData()}
+            sx={{
+              maxWidth: 200,
+              backgroundColor: "teal",
+              color: "whitesmoke",
+              borderRadius: "2",
+            }}
+          >
+            Refetch Quiz
+          </Button>
+          <Button
+            sx={{
+              maxWidth: 200,
+              backgroundColor: "green",
+              color: "whitesmoke",
+              borderRadius: "2",
+            }}
+            onClick={() => handleCreateQuiz()}
+          >
+            Save Quiz As Quiz Master And View In DashBoard
+          </Button>
+        </Stack>
       )}
     </Container>
   );

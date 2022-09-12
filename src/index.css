@@ -90,3 +90,36 @@ body {
     transform: rotate(0deg);
   }
 }
+
+.text {
+  font-size: 3rem;
+}
+
+.questions {
+  text-align: center;
+}
+
+.create-quiz-cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card-styles {
+  border: 2px solid var(--pacific-blue);
+  margin-top: 2rem;
+}
+
+.saveQuizButton {
+  align-items: center;
+  background-color: var(--pacific-blue);
+  border-radius: 3rem;
+  border: 2px solid black;
+}
+
+.quiz-title {
+  color: var(--pacific-blue);
+  text-align: center;
+  margin-bottom: 2rem;
+}
