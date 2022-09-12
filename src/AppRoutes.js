@@ -41,10 +41,10 @@ export const AppRoutes = () => {
 						path="/introduction"
 						element={<Introduction />}
 					/>
-					<Route
+					{/* <Route
 						path="/dashboard"
 						element={<DashboardPage />}
-					/>
+					/> */}
 					<Route
 						path="/create-quiz"
 						element={<CreateQuizPage />}

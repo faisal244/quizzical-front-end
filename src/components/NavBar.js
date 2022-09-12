@@ -49,11 +49,11 @@ export const NavBar = () => {
 					path: "/",
 					onClick: navigator,
 				},
-				{
-					label: "DashBoard",
-					path: "/dashboard",
-					onClick: navigator,
-				},
+				// {
+				// 	label: "DashBoard",
+				// 	path: "/dashboard",
+				// 	onClick: navigator,
+				// },
 				{
 					label: "Log Out",
 					path: "/logout",

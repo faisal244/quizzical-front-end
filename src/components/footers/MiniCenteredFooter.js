@@ -38,9 +38,9 @@ export default () => {
 						<LogoText>Quizzical</LogoText>
 					</LogoContainer>
 					<LinksContainer>
-						<Link href="#">Home</Link>
+						<Link href="/">Home</Link>
 						<Link href="#">About</Link>
-						<Link href="#">Create a Quiz</Link>
+						<Link href="/create-quiz">Create a Quiz</Link>
 						<Link href="#">View All Quizzes</Link>
 					</LinksContainer>
 					{/* <SocialLinksContainer>

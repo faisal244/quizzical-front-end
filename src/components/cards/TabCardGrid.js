@@ -9,6 +9,7 @@ import { PrimaryButton as PrimaryButtonBase } from "components/misc/Buttons.js";
 import { ReactComponent as StarIcon } from "images/star-icon.svg";
 import { ReactComponent as SvgDecoratorBlob1 } from "images/svg-decorator-blob-5.svg";
 import { ReactComponent as SvgDecoratorBlob2 } from "images/svg-decorator-blob-7.svg";
+
 import { default as images } from "constants/images";
 import { useQuery } from "@apollo/client";
 import { GETALLQUIZZES } from "graphql/queries";
@@ -71,7 +72,7 @@ const DecoratorBlob2 = styled(SvgDecoratorBlob2)`
 export default ({
 	heading = "Latest Quizzes",
 	tabs = {
-		Category1: [
+		All: [
 			{
 				imageSrc: images.animals,
 
@@ -131,9 +132,9 @@ export default ({
 				url: "#",
 			},
 		],
-		Category2: getRandomCards(),
+		// Main: getRandomCards(),
 		// Soup: getRandomCards(),
-		// Desserts: getRandomCards()
+		// Desserts: getRandomCards(),
 	},
 }) => {
 	/*
@@ -146,79 +147,94 @@ export default ({
 
 	const tabsKeys = Object.keys(tabs);
 	const [activeTab, setActiveTab] = useState(tabsKeys[0]);
+
 	console.log(data);
 
-	useEffect(() => {
-		console.log(data);
-	}, [data]);
+	// useEffect(() => {
+	// 	console.log(data);
+	// }, [data]);
 
 	return (
 		<Container>
 			<ContentWithPaddingXl>
 				<HeaderRow>
 					<Header>{heading}</Header>
-				</HeaderRow>
-				{data &&
-					// tabsKeys.map((tabKey, index) => (
-					// 	<TabContent
-					// 		key={index}
-					// 		variants={{
-					// 			current: {
-					// 				opacity: 1,
-					// 				scale: 1,
-					// 				display: "flex",
-					// 			},
-					// 			hidden: {
-					// 				opacity: 0,
-					// 				scale: 0.8,
-					// 				display: "none",
-					// 			},
-					// 		}}
-					// 		transition={{ duration: 0.4 }}
-					// 		initial={activeTab === tabKey ? "current" : "hidden"}
-					// 		animate={activeTab === tabKey ? "current" : "hidden"}
-					// >
-					data.getQuizes.quizzes.map((quiz, index) => (
-						<CardContainer key={index}>
-							<Card
-								className="group"
-								// href={card.url}
-								initial="rest"
-								whileHover="hover"
-								animate="rest"
+					<TabsControl>
+						{Object.keys(tabs).map((tabName, index) => (
+							<TabControl
+								key={index}
+								active={activeTab === tabName}
+								onClick={() => setActiveTab(tabName)}
 							>
-								<CardImageContainer imageSrc={images.animals}>
-									{/* <CardRatingContainer> */}
-									{/* <CardRating> */}
-									{/* <StarIcon /> */}
-									{/* {card.rating} */}
-									{/* </CardRating> */}
-									{/* <CardReview>({card.reviews})</CardReview> */}
-									{/* </CardRatingContainer> */}
-									<CardHoverOverlay
-										variants={{
-											hover: {
-												opacity: 1,
-												height: "auto",
-											},
-											rest: {
-												opacity: 0,
-												height: 0,
-											},
-										}}
-										transition={{ duration: 0.3 }}
+								{tabName}
+							</TabControl>
+						))}
+					</TabsControl>
+				</HeaderRow>
+
+				{tabsKeys.map((tabKey, index) => (
+					<TabContent
+						key={index}
+						variants={{
+							current: {
+								opacity: 1,
+								scale: 1,
+								display: "flex",
+							},
+							hidden: {
+								opacity: 0,
+								scale: 0.8,
+								display: "none",
+							},
+						}}
+						transition={{ duration: 0.4 }}
+						initial={activeTab === tabKey ? "current" : "hidden"}
+						animate={activeTab === tabKey ? "current" : "hidden"}
+					>
+						{data &&
+							data.getQuizes.quizzes.map((quiz, index) => (
+								<CardContainer key={index}>
+									<Card
+										className="group"
+										// href={card.url}
+										initial="rest"
+										whileHover="hover"
+										animate="rest"
 									>
-										<CardButton>View Quiz</CardButton>
-									</CardHoverOverlay>
-								</CardImageContainer>
-								<CardText>
-									<CardTitle>{quiz.title}</CardTitle>
-									<CardContent>{quiz.content}</CardContent>
-									{/* <CardPrice>{card.price}</CardPrice> */}
-								</CardText>
-							</Card>
-						</CardContainer>
-					))}
+										<CardImageContainer imageSrc={images.animals}>
+											{/* <CardRatingContainer>
+											<CardRating>
+												<StarIcon />
+												{card.rating}
+											</CardRating>
+											<CardReview>({card.reviews})</CardReview>
+										</CardRatingContainer> */}
+											<CardHoverOverlay
+												variants={{
+													hover: {
+														opacity: 1,
+														height: "auto",
+													},
+													rest: {
+														opacity: 0,
+														height: 0,
+													},
+												}}
+												transition={{ duration: 0.3 }}
+											>
+												<CardButton>View Quiz</CardButton>
+											</CardHoverOverlay>
+										</CardImageContainer>
+										<CardText>
+											<CardTitle>{quiz.title}</CardTitle>
+											<CardContent>{quiz.category}</CardContent>
+											{/* <CardPrice>{card.price}</CardPrice> */}
+										</CardText>
+									</Card>
+								</CardContainer>
+							))}
+					</TabContent>
+				))}
 			</ContentWithPaddingXl>
 			<DecoratorBlob1 />
 			<DecoratorBlob2 />
@@ -230,61 +246,83 @@ export default ({
 const getRandomCards = () => {
 	const cards = [
 		{
-			imageSrc: images.animals,
-
-			title: "Title gets mapped here",
-			content: "Category gets mapped here - Animals",
-
-			url: "https://www.google.com",
-		},
-		{
-			imageSrc: images.anime,
-
-			title: "Anime",
-			content: "Category gets mapped here - Anime",
-
+			imageSrc:
+				"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80",
+			title: "Chicken Chilled",
+			content: "Chicken Main Course",
+			price: "$5.99",
+			rating: "5.0",
+			reviews: "87",
 			url: "#",
 		},
 		{
-			imageSrc: images.art,
-			title: "Art",
-			content: "Category gets mapped here - Art",
-
+			imageSrc:
+				"https://images.unsplash.com/photo-1582254465498-6bc70419b607?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80",
+			title: "Samsa Beef",
+			content: "Fried Mexican Beef",
+			price: "$3.99",
+			rating: "4.5",
+			reviews: "34",
 			url: "#",
 		},
 		{
-			imageSrc: images.books,
-			title: "Books",
-			content: "Category gets mapped here - Books",
-
+			imageSrc:
+				"https://images.unsplash.com/photo-1565310022184-f23a884f29da?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80",
+			title: "Carnet Nachos",
+			content: "Chilli Crispy Nachos",
+			price: "$3.99",
+			rating: "3.9",
+			reviews: "26",
 			url: "#",
 		},
 		{
-			imageSrc: images.cartoons,
-			title: "Cartoons",
-			content: "Category gets mapped here - cartoons",
-
+			imageSrc:
+				"https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80",
+			title: "Guacamole Mex",
+			content: "Mexican Chilli",
+			price: "$3.99",
+			rating: "4.2",
+			reviews: "95",
 			url: "#",
 		},
 		{
-			imageSrc: images.comics,
-			title: "Comics",
-			content: "Category gets mapped here - comics",
-
+			imageSrc:
+				"https://images.unsplash.com/photo-1550461716-dbf266b2a8a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80",
+			title: "Chillie Cake",
+			content: "Deepfried Chicken",
+			price: "$2.99",
+			rating: "5.0",
+			reviews: "61",
 			url: "#",
 		},
 		{
-			imageSrc: images.cinema,
-			title: "Cinema",
-			content: "Category gets mapped here - Cinema",
-
+			imageSrc:
+				"https://images.unsplash.com/photo-1476224203421-9ac39bcb3327??ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80",
+			title: "Nelli",
+			content: "Hamburger & Fries",
+			price: "$7.99",
+			rating: "4.9",
+			reviews: "89",
 			url: "#",
 		},
 		{
-			imageSrc: images.videogames,
-			title: "Video Games",
-			content: "Category gets mapped here - Video Games",
-
+			imageSrc:
+				"https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80",
+			title: "Jalapeno Poppers",
+			content: "Crispy Soyabeans",
+			price: "$8.99",
+			rating: "4.6",
+			reviews: "12",
+			url: "#",
+		},
+		{
+			imageSrc:
+				"https://images.unsplash.com/photo-1473093226795-af9932fe5856?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80",
+			title: "Cajun Chicken",
+			content: "Roasted Chicken & Egg",
+			price: "$7.99",
+			rating: "4.2",
+			reviews: "19",
 			url: "#",
 		},
 	];
