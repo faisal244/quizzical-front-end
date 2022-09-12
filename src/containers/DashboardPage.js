@@ -26,7 +26,6 @@ export const DashboardPage = () => {
 
   const handleviewQuestionsAndAnswer = (item) => {
     console.log(item.questions);
-    // on click of this function get the questions from this id using the query
   };
 
   const viewQuizes = () => {
@@ -128,19 +127,6 @@ export const DashboardPage = () => {
                         </Button>
                         {item.questions.map((question) => {
                           console.log(question);
-                          return (
-                            <div>
-                              <Card.Body>
-                                <h1>Questions</h1>
-                                <Card.Title className="m-4">
-                                  {question}
-                                </Card.Title>
-                                <Card.Title className="m-4">
-                                  Title:{question}
-                                </Card.Title>
-                              </Card.Body>
-                            </div>
-                          );
                         })}
                         <Button
                           sx={{
