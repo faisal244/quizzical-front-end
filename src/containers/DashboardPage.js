@@ -34,10 +34,10 @@ export const DashboardPage = () => {
     setHideWelcomeMessage(true);
   };
 
-  const handleDeleteQuiz = (item) => {
-    console.log(item);
+  const handleDeleteQuiz = (id) => {
+    console.log(id);
     const deletedQuiz = deleteQuiz({
-      variables: { deleteQuizId: item },
+      variables: { deleteQuizId: id },
     });
   };
   return (
