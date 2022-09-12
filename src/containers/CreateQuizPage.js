@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { CREATEQUIZ } from "../graphql/mutations";
 import Hero from "components/hero/FullWidthWithImage";
+// import QuestionCard from "components/QuestionCard";
 
 const difficulties = [
 	{
@@ -223,191 +224,187 @@ export const CreateQuizPage = () => {
 	};
 
 	return (
-		(<Hero />),
-		(
-			<Container maxWidth="md">
-				<Box
-					component="form"
-					onSubmit={handleSubmit}
+		// (<Hero />),
+		<Container maxWidth="md">
+			<Box
+				component="form"
+				onSubmit={handleSubmit}
+			>
+				<Stack
+					spacing={3}
+					sx={{ mx: 2 }}
 				>
-					<Stack
-						spacing={3}
-						sx={{ mx: 2 }}
+					<FormControl
+						fullWidth
+						sx={{ p: 1, mt: 3, textAlign: "center" }}
 					>
-						<FormControl
+						<TextField
+							id="outlined-basic"
+							label="Title"
+							variant="outlined"
 							fullWidth
-							sx={{ p: 1, mt: 3, textAlign: "center" }}
-						>
-							<TextField
-								id="outlined-basic"
-								label="Title"
-								variant="outlined"
-								fullWidth
-								onChange={handleTitleChange}
-							/>
-						</FormControl>
-						<FormControl
-							fullWidth
-							sx={{ p: 1, mt: 3, textAlign: "center" }}
-						>
-							<InputLabel
-								id="demo-simple-select-label"
-								sx={{ textAlign: "center" }}
-							>
-								Please Select A Category
-							</InputLabel>
-							<Select
-								value={category}
-								label="Category"
-								onChange={handleCategoryChange}
-							>
-								{categories.map((category) => (
-									<MenuItem
-										key={`category-${category.value}`}
-										value={category.value}
-									>
-										{category.name}
-									</MenuItem>
-								))}
-							</Select>
-						</FormControl>
-						<FormControl
-							fullWidth
-							sx={{ p: 1, mt: 3 }}
-						>
-							<InputLabel
-								id="demo-simple-select-label"
-								sx={{ textAlign: "center" }}
-							>
-								Please Select A Question Type
-							</InputLabel>
-							<Select
-								value={type}
-								label="Question"
-								onChange={handleQuestionTypeChange}
-							>
-								{types.map((type) => (
-									<MenuItem
-										key={`type-${type.value}`}
-										value={type.value}
-									>
-										{type.name}
-									</MenuItem>
-								))}
-							</Select>
-						</FormControl>
-						<FormControl
-							fullWidth
-							sx={{ p: 1, mt: 3 }}
-						>
-							<InputLabel
-								id="demo-simple-select-label"
-								sx={{ textAlign: "center" }}
-							>
-								Please Select A Difficulty Level
-							</InputLabel>
-							<Select
-								value={difficulty}
-								label="Difficulty"
-								onChange={handleDifficultyChange}
-							>
-								{difficulties.map((difficulty) => (
-									<MenuItem
-										key={`difficulty-${difficulty.value}`}
-										value={difficulty.value}
-									>
-										{difficulty.name}
-									</MenuItem>
-								))}
-							</Select>
-						</FormControl>
-						<FormControl
-							fullWidth
-							sx={{ p: 1, mt: 3 }}
-						>
-							<InputLabel
-								id="demo-simple-select-label"
-								sx={{ textAlign: "center" }}
-							>
-								Please Select The Number Of Questions
-							</InputLabel>
-							<Select
-								value={questions}
-								label="Number of questions"
-								onChange={handleQuestionChange}
-							>
-								{["10", "15", "20", "25", "30", "40", "45", "50"].map(
-									(each) => (
-										<MenuItem
-											key={`questions-${each}`}
-											value={each}
-										>
-											{each}
-										</MenuItem>
-									)
-								)}
-							</Select>
-						</FormControl>
-						<FormControl
-							fullWidth
-							sx={{ p: 1, mt: 3 }}
-						>
-							<Button
-								type="submit"
-								variant="contained"
-								color="success"
-								sx={{ p: 1, mt: 2 }}
-							>
-								Generate A Quiz
-							</Button>
-						</FormControl>
-					</Stack>
-				</Box>
-
-				<Box>
-					{quizData ? (
-						<Quiz
-							quizData={quizData.results}
-							title={title}
+							onChange={handleTitleChange}
 						/>
-					) : (
-						"No Data"
-					)}
-				</Box>
-
-				{quizData && (
-					<Stack
-						spacing={2}
-						direction="row"
-						justifyContent="center"
-						marginTop="1.5rem"
-						paddingTop="2.5rem"
+					</FormControl>
+					<FormControl
+						fullWidth
+						sx={{ p: 1, mt: 3, textAlign: "center" }}
+					>
+						<InputLabel
+							id="demo-simple-select-label"
+							sx={{ textAlign: "center" }}
+						>
+							Please Select A Category
+						</InputLabel>
+						<Select
+							value={category}
+							label="Category"
+							onChange={handleCategoryChange}
+						>
+							{categories.map((category) => (
+								<MenuItem
+									key={`category-${category.value}`}
+									value={category.value}
+								>
+									{category.name}
+								</MenuItem>
+							))}
+						</Select>
+					</FormControl>
+					<FormControl
+						fullWidth
+						sx={{ p: 1, mt: 3 }}
+					>
+						<InputLabel
+							id="demo-simple-select-label"
+							sx={{ textAlign: "center" }}
+						>
+							Please Select A Question Type
+						</InputLabel>
+						<Select
+							value={type}
+							label="Question"
+							onChange={handleQuestionTypeChange}
+						>
+							{types.map((type) => (
+								<MenuItem
+									key={`type-${type.value}`}
+									value={type.value}
+								>
+									{type.name}
+								</MenuItem>
+							))}
+						</Select>
+					</FormControl>
+					<FormControl
+						fullWidth
+						sx={{ p: 1, mt: 3 }}
+					>
+						<InputLabel
+							id="demo-simple-select-label"
+							sx={{ textAlign: "center" }}
+						>
+							Please Select A Difficulty Level
+						</InputLabel>
+						<Select
+							value={difficulty}
+							label="Difficulty"
+							onChange={handleDifficultyChange}
+						>
+							{difficulties.map((difficulty) => (
+								<MenuItem
+									key={`difficulty-${difficulty.value}`}
+									value={difficulty.value}
+								>
+									{difficulty.name}
+								</MenuItem>
+							))}
+						</Select>
+					</FormControl>
+					<FormControl
+						fullWidth
+						sx={{ p: 1, mt: 3 }}
+					>
+						<InputLabel
+							id="demo-simple-select-label"
+							sx={{ textAlign: "center" }}
+						>
+							Please Select The Number Of Questions
+						</InputLabel>
+						<Select
+							value={questions}
+							label="Number of questions"
+							onChange={handleQuestionChange}
+						>
+							{["10", "15", "20", "25", "30", "40", "45", "50"].map((each) => (
+								<MenuItem
+									key={`questions-${each}`}
+									value={each}
+								>
+									{each}
+								</MenuItem>
+							))}
+						</Select>
+					</FormControl>
+					<FormControl
+						fullWidth
+						sx={{ p: 1, mt: 3 }}
 					>
 						<Button
-							onClick={() => getQuizData()}
-							sx={{
-								maxWidth: 200,
-								backgroundColor: "teal",
-								color: "whitesmoke",
-								borderRadius: "2",
-							}}
+							type="submit"
+							variant="contained"
+							color="success"
+							sx={{ p: 1, mt: 2 }}
 						>
-							Refetch Quiz
+							Generate A Quiz
 						</Button>
-						<Button
-							sx={{
-								maxWidth: 200,
-								backgroundColor: "green",
-								color: "whitesmoke",
-								borderRadius: "2",
-							}}
-							onClick={() => handleCreateQuiz()}
-						>
-							Save Quiz As Quiz Master And View In DashBoard
-						</Button>
-					</Stack>
+					</FormControl>
+				</Stack>
+			</Box>
+
+			<Box>
+				{quizData ? (
+					<Quiz
+						quizData={quizData.results}
+						title={title}
+					/>
+				) : (
+					"No Data"
 				)}
-			</Container>
-		)
+			</Box>
+
+			{quizData && (
+				<Stack
+					spacing={2}
+					direction="row"
+					justifyContent="center"
+					marginTop="1.5rem"
+					paddingTop="2.5rem"
+				>
+					<Button
+						onClick={() => getQuizData()}
+						sx={{
+							maxWidth: 200,
+							backgroundColor: "teal",
+							color: "whitesmoke",
+							borderRadius: "2",
+						}}
+					>
+						Refetch Quiz
+					</Button>
+					<Button
+						sx={{
+							maxWidth: 200,
+							backgroundColor: "green",
+							color: "whitesmoke",
+							borderRadius: "2",
+						}}
+						onClick={() => handleCreateQuiz()}
+					>
+						Save Quiz As Quiz Master And View In DashBoard
+					</Button>
+				</Stack>
+			)}
+		</Container>
 	);
 };
