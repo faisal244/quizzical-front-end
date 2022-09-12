@@ -21,7 +21,6 @@ export const GETMYQUIZES = gql`
   }
 `;
 
-
 export const GETSINGLEQUIZ = gql`
   query GetQuiz($getQuizId: ID!) {
     getQuiz(id: $getQuizId) {
@@ -37,4 +36,3 @@ export const GETSINGLEQUIZ = gql`
     }
   }
 `;
-

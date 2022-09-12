@@ -24,8 +24,8 @@ export const DashboardPage = () => {
     navigate("/create-quiz");
   };
 
-  const handleViewQuiz = (item) => {
-    console.log(item);
+  const handleviewQuestionsAndAnswer = (item) => {
+    console.log(item.questions);
     // on click of this function get the questions from this id using the query
   };
 
@@ -95,6 +95,7 @@ export const DashboardPage = () => {
             {viewAllQuizzesBtn && (
               <div className="bg-light border">
                 {data.getMyQuiz.quizzes.map((item) => {
+                  console.log(item);
                   return (
                     <Card
                       key={item.id}
@@ -121,10 +122,26 @@ export const DashboardPage = () => {
                             color: "whitesmoke",
                             borderRadius: "2",
                           }}
-                          onClick={() => handleViewQuiz(item.id)}
+                          onClick={() => handleviewQuestionsAndAnswer(item)}
                         >
-                          ViewQuiz
+                          ViewQuestionsAndAnswers
                         </Button>
+                        {item.questions.map((question) => {
+                          console.log(question);
+                          return (
+                            <div>
+                              <Card.Body>
+                                <h1>Questions</h1>
+                                <Card.Title className="m-4">
+                                  {question}
+                                </Card.Title>
+                                <Card.Title className="m-4">
+                                  Title:{question}
+                                </Card.Title>
+                              </Card.Body>
+                            </div>
+                          );
+                        })}
                         <Button
                           sx={{
                             maxWidth: 200,
