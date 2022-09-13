@@ -7,6 +7,7 @@ import { Introduction } from "./containers/Introduction";
 import Hero from "components/hero/FullWidthWithImage";
 import { useAuth } from "./context/AppProvider";
 import { Homepage } from "./containers/Homepage";
+import { ViewAllQuizzes } from "./containers/ViewAllQuizzesPage";
 import { Footer } from "components/footers/MiniCenteredFooter";
 
 export const AppRoutes = () => {
@@ -37,14 +38,14 @@ export const AppRoutes = () => {
 						path="/"
 						element={<Homepage />}
 					/>
-					<Route
+					{/* <Route
 						path="/introduction"
 						element={<Introduction />}
-					/>
-					{/* <Route
-						path="/dashboard"
-						element={<DashboardPage />}
 					/> */}
+					<Route
+						path="/view-all-quizzes"
+						element={<ViewAllQuizzes />}
+					/>
 					<Route
 						path="/create-quiz"
 						element={<CreateQuizPage />}
