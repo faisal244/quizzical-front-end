@@ -37,6 +37,7 @@ export const GETSINGLEQUIZ = gql`
 	}
 `;
 
+
 export const GETALLQUIZZES = gql`
 	query GetQuizes {
 		getQuizes {
@@ -48,3 +49,5 @@ export const GETALLQUIZZES = gql`
 		}
 	}
 `;
+
+
