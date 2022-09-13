@@ -1,6 +1,5 @@
 import { useState } from "react";
 import InputLabel from "@mui/material/InputLabel";
-import { Quiz } from "../components/Quiz";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
@@ -12,6 +11,7 @@ import Container from "@mui/material/Container";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { CREATEQUIZ } from "../graphql/mutations";
+import { TableOfQuestions } from "../components/createQuizPage/TableOfQuestions";
 
 const difficulties = [
   {
@@ -331,7 +331,7 @@ export const CreateQuizPage = () => {
 
       <Box>
         {quizData ? (
-          <Quiz quizData={quizData.results} title={title} />
+          <TableOfQuestions quizData={quizData.results} title={title} />
         ) : (
           "Please Fill The Form Above To Render A Quiz"
         )}
@@ -365,7 +365,7 @@ export const CreateQuizPage = () => {
             }}
             onClick={() => handleCreateQuiz()}
           >
-            Save Quiz As Quiz Master And View In DashBoard
+            Save Table Of Questions
           </Button>
         </Stack>
       )}

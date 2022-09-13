@@ -1,7 +1,7 @@
 import Grid from "@mui/material/Grid";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-import { ImageWithBackground } from "../components/ImageWithBackground";
+import { ImageWithBackground } from "../components/dashboard/ImageWithBackground";
 import { LoginForm } from "../components/LoginForm";
 
 import quizImage from "../images/quiz.jpg";

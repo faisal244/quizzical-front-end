@@ -1,5 +1,5 @@
-import Card from "react-bootstrap/Card";
 import Stack from "@mui/material/Stack";
+import { TableOfQuestions } from "../components/createQuizPage/TableOfQuestions";
 import Button from "@mui/material/Button";
 import { useQuery, useMutation } from "@apollo/client";
 import { GETMYQUIZES } from "../graphql/queries";
@@ -92,33 +92,7 @@ export const DashboardPage = () => {
             View All Quizes
           </Button>
         )}
-        {viewAllQuizzesBtn && (
-          <div className="bg-light border">
-            <Button
-              sx={{
-                maxWidth: 200,
-                backgroundColor: "green",
-                color: "whitesmoke",
-                borderRadius: "2",
-              }}
-              onClick={() => handleviewQuestionsAndAnswer()}
-            >
-              ViewQuestionsAndAnswers
-            </Button>
-            <Button
-              sx={{
-                maxWidth: 200,
-                backgroundColor: "green",
-                color: "whitesmoke",
-                borderRadius: "2",
-              }}
-              onClick={() => handleDeleteQuiz()}
-            >
-              Delete Quiz
-            </Button>
-            );
-          </div>
-        )}
+        {viewAllQuizzesBtn && <TableOfQuestions />}
       </Stack>
     </div>
   );
