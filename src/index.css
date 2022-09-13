@@ -28,8 +28,6 @@ body {
 #bannerimage {
   width: 100%;
   background-image: url("../src/images/dashquiz.jpg");
-  height: 900px;
-  background-color: var(--star-command-blue);
   background-position: center;
 }
 
@@ -41,27 +39,12 @@ body {
   background-color: var(--pacific-blue);
 }
 
-.arrow-img {
-  width: 100%;
-  background-image: url("../src/images/arrow.jpg");
-  height: 900px;
-  background-position: center;
-}
-
 .wave {
   animation-name: wave-animation;
   animation-duration: 2.5s;
   animation-iteration-count: infinite;
   transform-origin: 70% 70%;
   display: inline-block;
-}
-
-.flip-scores-img {
-  width: 100%;
-  background-image: url("../src/images/dashquiz.jpg");
-  height: 250px;
-  background-color: var(--star-command-blue);
-  background-position: center;
 }
 
 @keyframes wave-animation {
@@ -122,4 +105,39 @@ body {
   color: var(--pacific-blue);
   text-align: center;
   margin-bottom: 2rem;
+}
+
+.display-4 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--star-command-blue);
+  text-transform: uppercase;
+  word-spacing: 1px;
+  letter-spacing: 2px;
+}
+
+.click-display {
+  margin-top: 40px;
+  text-transform: none;
+  font-size: 1em;
+  font-weight: normal;
+  font-style: italic;
+  font-family: "Playfair Display", "Bookman", serif;
+  color: var(--star-command-blue);
+  letter-spacing: -0.005em;
+  word-spacing: 1px;
+  letter-spacing: none;
+}
+
+.display-4::before {
+  position: absolute;
+  left: 0;
+  bottom: 38px;
+  width: 60px;
+  height: 4px;
+  content: "";
+  left: 50%;
+  margin-left: -30px;
+  background-color: var(--midnight-blue);
 }

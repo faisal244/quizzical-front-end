@@ -10,6 +10,7 @@ import { useState } from "react";
 export const DashboardPage = () => {
   const [viewAllQuizzesBtn, setAllQuizzesButton] = useState(false);
   const [hideWelcomeMessage, setHideWelcomeMessage] = useState(false);
+  const [quizView, setQuizView] = useState(false);
 
   const [
     deleteQuiz,
@@ -24,13 +25,14 @@ export const DashboardPage = () => {
     navigate("/create-quiz");
   };
 
-  const handleviewQuestionsAndAnswer = (item) => {
-    console.log(item.questions);
+  const handleviewQuestionsAndAnswer = () => {
+    console.log();
   };
 
   const viewQuizes = () => {
     setAllQuizzesButton(true);
     setHideWelcomeMessage(true);
+    setQuizView(true);
   };
 
   const handleDeleteQuiz = (id) => {
@@ -40,114 +42,84 @@ export const DashboardPage = () => {
     });
   };
   return (
-    <div className="container">
+    <div id="bannerimage">
       <div className="jumbotron">
-        <div id="bannerimage">
-          {!hideWelcomeMessage && (
-            <div>
-              <h1 className="display-4">
-                Hello QuizMaster Welcome To Your Ultimate Quiz!
-              </h1>
-              <p className="lead">
-                Please Choose If You Would Like To Keep The Quizes Below
-              </p>
-
-              <p>Click any of the buttons below to get started</p>
-              <p className="lead"></p>
-            </div>
-          )}
-          <Stack
-            spacing={2}
-            direction="row"
-            justifyContent="center"
-            marginTop="1.5rem"
-            paddingTop="2.5rem"
-          >
-            {!hideWelcomeMessage && (
-              <Button
-                variant="text"
-                className="create-quiz"
-                onClick={createQuizPage}
-                sx={{
-                  backgroundColor: "secondary.main",
-                  color: "white",
-                  borderRadius: "2",
-                }}
-              >
-                Create A New Quiz
-              </Button>
-            )}
-            {!hideWelcomeMessage && (
-              <Button
-                variant="text"
-                className="create-quiz"
-                onClick={viewQuizes}
-                sx={{
-                  backgroundColor: "secondary.main",
-                  color: "white",
-                  borderRadius: "2",
-                }}
-              >
-                View All Quizes
-              </Button>
-            )}
-            {viewAllQuizzesBtn && (
-              <div className="bg-light border">
-                {data.getMyQuiz.quizzes.map((item) => {
-                  console.log(item);
-                  return (
-                    <Card
-                      key={item.id}
-                      style={{ width: "18rem", height: "10rem" }}
-                    >
-                      <Card.Body>
-                        <Card.Title className="m-4">
-                          Title:{item.tile}
-                        </Card.Title>
-                        <Card.Subtitle className="mb-2 text-muted">
-                          Category:{item.category}
-                        </Card.Subtitle>
-                        <Card.Subtitle className="mb-2 text-muted">
-                          Difficulty:{item.difficulty}
-                        </Card.Subtitle>
-                        <Card.Subtitle className="mb-2 text-muted">
-                          Type:{item.type}
-                        </Card.Subtitle>
-
-                        <Button
-                          sx={{
-                            maxWidth: 200,
-                            backgroundColor: "green",
-                            color: "whitesmoke",
-                            borderRadius: "2",
-                          }}
-                          onClick={() => handleviewQuestionsAndAnswer(item)}
-                        >
-                          ViewQuestionsAndAnswers
-                        </Button>
-                        {item.questions.map((question) => {
-                          console.log(question);
-                        })}
-                        <Button
-                          sx={{
-                            maxWidth: 200,
-                            backgroundColor: "green",
-                            color: "whitesmoke",
-                            borderRadius: "2",
-                          }}
-                          onClick={() => handleDeleteQuiz(item.id)}
-                        >
-                          Delete Quiz
-                        </Button>
-                      </Card.Body>
-                    </Card>
-                  );
-                })}
-              </div>
-            )}
-          </Stack>
-        </div>
+        {!hideWelcomeMessage && (
+          <div>
+            <h1 className="display-4">
+              Hello <span class="wave">👋🏾</span> QuizMaster Welcome To Your
+              Ultimate Quiz!
+            </h1>
+            <span className="click-display">
+              Click any cards below to get started
+            </span>
+            <p className="lead"></p>
+          </div>
+        )}
       </div>
+      <Stack
+        spacing={2}
+        direction="row"
+        justifyContent="center"
+        marginTop="1.5rem"
+        paddingTop="2.5rem"
+      >
+        {!hideWelcomeMessage && (
+          <Button
+            variant="text"
+            className="create-quiz"
+            onClick={createQuizPage}
+            sx={{
+              backgroundColor: "secondary.main",
+              color: "white",
+              borderRadius: "2",
+            }}
+          >
+            Create A New Quiz
+          </Button>
+        )}
+        {!hideWelcomeMessage && (
+          <Button
+            variant="text"
+            className="create-quiz"
+            onClick={viewQuizes}
+            sx={{
+              backgroundColor: "secondary.main",
+              color: "white",
+              borderRadius: "2",
+            }}
+          >
+            View All Quizes
+          </Button>
+        )}
+        {viewAllQuizzesBtn && (
+          <div className="bg-light border">
+            <Button
+              sx={{
+                maxWidth: 200,
+                backgroundColor: "green",
+                color: "whitesmoke",
+                borderRadius: "2",
+              }}
+              onClick={() => handleviewQuestionsAndAnswer()}
+            >
+              ViewQuestionsAndAnswers
+            </Button>
+            <Button
+              sx={{
+                maxWidth: 200,
+                backgroundColor: "green",
+                color: "whitesmoke",
+                borderRadius: "2",
+              }}
+              onClick={() => handleDeleteQuiz()}
+            >
+              Delete Quiz
+            </Button>
+            );
+          </div>
+        )}
+      </Stack>
     </div>
   );
 };

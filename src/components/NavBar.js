@@ -39,7 +39,6 @@ export const NavBar = () => {
     // render the login sign up page
     setIsLoggedIn(false);
     setUser();
-    navigate("/introduction");
   };
 
   const navItems = isLoggedIn

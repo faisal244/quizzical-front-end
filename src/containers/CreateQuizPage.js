@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import InputLabel from "@mui/material/InputLabel";
 import { Quiz } from "../components/Quiz";
 import FormControl from "@mui/material/FormControl";
@@ -333,7 +333,7 @@ export const CreateQuizPage = () => {
         {quizData ? (
           <Quiz quizData={quizData.results} title={title} />
         ) : (
-          "No Data"
+          "Please Fill The Form Above To Render A Quiz"
         )}
       </Box>
 
