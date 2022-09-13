@@ -15,129 +15,141 @@ import { useAuth } from "../context/AppProvider";
 import HomeIcon from "@mui/icons-material/Home";
 
 export const NavBar = () => {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const navigate = useNavigate();
+	const [mobileOpen, setMobileOpen] = useState(false);
+	const navigate = useNavigate();
 
-  // set state for log out
+	// set state for log out
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
-  const { isLoggedIn, setIsLoggedIn, setUser } = useAuth();
+	const handleDrawerToggle = () => {
+		setMobileOpen(!mobileOpen);
+	};
+	const { isLoggedIn, setIsLoggedIn, setUser } = useAuth();
 
-  const navigator = (event) => {
-    const path = event.target.dataset.path;
-    navigate(path, { replace: true });
-  };
+	const navigator = (event) => {
+		const path = event.target.dataset.path;
+		navigate(path, { replace: true });
+	};
 
-  const logOut = () => {
-    console.log("loggedout");
+	const logOut = () => {
+		console.log("loggedout");
 
-    //clear from localstorage
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    // render the login sign up page
-    setIsLoggedIn(false);
-    setUser();
-    navigate("/introduction");
-  };
+		//clear from localstorage
+		localStorage.removeItem("token");
+		localStorage.removeItem("user");
+		// render the login sign up page
+		setIsLoggedIn(false);
+		setUser();
+		navigate("/");
+	};
 
-  const navItems = isLoggedIn
-    ? [
-        {
-          label: <HomeIcon />,
-          path: "/introduction",
-          onClick: navigator,
-        },
-        {
-          label: "DashBoard",
-          path: "/dashboard",
-          onClick: navigator,
-        },
-        {
-          label: "Log Out",
-          path: "/logout",
-          onClick: logOut,
-        },
-      ]
-    : [
-        {
-          label: "Login",
-          path: "/login",
-          onClick: navigator,
-        },
-        {
-          label: "Sign Up",
-          path: "/sign-up",
-          onClick: navigator,
-        },
-      ];
-  const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <List>
-        {navItems.map((item) => (
-          <ListItem key={item.label} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }} onClick={item.onClick}>
-              <ListItemText primary={item.label} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
+	const navItems = isLoggedIn
+		? [
+				{
+					label: <HomeIcon />,
+					path: "/",
+					onClick: navigator,
+				},
+				// {
+				// 	label: "DashBoard",
+				// 	path: "/dashboard",
+				// 	onClick: navigator,
+				// },
+				{
+					label: "Log Out",
+					path: "/logout",
+					onClick: logOut,
+				},
+		  ]
+		: [
+				{
+					label: "Login",
+					path: "/login",
+					onClick: navigator,
+				},
+				{
+					label: "Sign Up",
+					path: "/sign-up",
+					onClick: navigator,
+				},
+		  ];
+	const drawer = (
+		<Box
+			onClick={handleDrawerToggle}
+			sx={{ textAlign: "center" }}
+		>
+			<List>
+				{navItems.map((item) => (
+					<ListItem
+						key={item.label}
+						disablePadding
+					>
+						<ListItemButton
+							sx={{ textAlign: "center" }}
+							onClick={item.onClick}
+						>
+							<ListItemText primary={item.label} />
+						</ListItemButton>
+					</ListItem>
+				))}
+			</List>
+		</Box>
+	);
 
-  return (
-    <Box sx={{ display: "flex", height: "64px" }} component="header">
-      <AppBar
-        component="nav"
-        sx={{
-          backgroundColor: "#264653",
-          height: "64px",
-        }}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {navItems.map((item) => (
-              <Button
-                key={item.label}
-                sx={{ color: "#fff" }}
-                onClick={item.onClick}
-                data-path={item.path}
-              >
-                {item.label}
-              </Button>
-            ))}
-          </Box>
-        </Toolbar>
-      </AppBar>
-      <Box component="nav">
-        <Drawer
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true,
-          }}
-          sx={{
-            display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-            },
-          }}
-          anchor="top"
-        >
-          {drawer}
-        </Drawer>
-      </Box>
-    </Box>
-  );
+	return (
+		<Box
+			sx={{ display: "flex", height: "64px" }}
+			component="header"
+		>
+			<AppBar
+				component="nav"
+				sx={{
+					backgroundColor: "#264653",
+					height: "64px",
+				}}
+			>
+				<Toolbar>
+					<IconButton
+						color="inherit"
+						aria-label="open drawer"
+						edge="start"
+						onClick={handleDrawerToggle}
+						sx={{ mr: 2, display: { sm: "none" } }}
+					>
+						<MenuIcon />
+					</IconButton>
+					<Box sx={{ display: { xs: "none", sm: "block" } }}>
+						{navItems.map((item) => (
+							<Button
+								key={item.label}
+								sx={{ color: "#fff" }}
+								onClick={item.onClick}
+								data-path={item.path}
+							>
+								{item.label}
+							</Button>
+						))}
+					</Box>
+				</Toolbar>
+			</AppBar>
+			<Box component="nav">
+				<Drawer
+					variant="temporary"
+					open={mobileOpen}
+					onClose={handleDrawerToggle}
+					ModalProps={{
+						keepMounted: true,
+					}}
+					sx={{
+						display: { xs: "block", sm: "none" },
+						"& .MuiDrawer-paper": {
+							boxSizing: "border-box",
+						},
+					}}
+					anchor="top"
+				>
+					{drawer}
+				</Drawer>
+			</Box>
+		</Box>
+	);
 };
