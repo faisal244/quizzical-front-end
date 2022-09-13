@@ -33,7 +33,7 @@ export const TableOfQuestions = ({ quizData }) => {
                   {row.correct_answer}
                 </TableCell>
                 <TableCell align="right" sx={{ backgroundColor: "red" }}>
-                  {JSON.stringify(row.incorrect_answers)}
+                  {JSON.stringify(row.incorrect_answers).slice(",")}
                 </TableCell>
               </TableRow>
             );
