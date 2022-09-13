@@ -51,7 +51,7 @@ export default ({
 	navLinks = [
 		<NavLinks key={1}>
 			<NavLink href="/create-quiz">Create a New Quiz</NavLink>
-			<NavLink href="/view-all-quizzes">View All Quizzes</NavLink>
+			<NavLink href="/dashboard">View All Quizzes</NavLink>
 			{/* <NavLink href="#">About</NavLink> */}
 			{/* <NavLink href="/login">Login</NavLink> */}
 		</NavLinks>,

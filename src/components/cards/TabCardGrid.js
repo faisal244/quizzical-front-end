@@ -13,6 +13,7 @@ import { ReactComponent as SvgDecoratorBlob2 } from "images/svg-decorator-blob-7
 import { default as images } from "constants/images";
 import { useQuery } from "@apollo/client";
 import { GETALLQUIZZES } from "graphql/queries";
+import { useNavigate } from "react-router-dom";
 
 const HeaderRow = tw.div`flex justify-between items-center flex-col xl:flex-row`;
 const Header = tw(SectionHeading)``;
@@ -147,8 +148,12 @@ export default ({
 
 	const tabsKeys = Object.keys(tabs);
 	const [activeTab, setActiveTab] = useState(tabsKeys[0]);
-
+	const navigate = useNavigate();
 	console.log(data);
+
+	const viewSingleQuizPage = (id) => {
+		navigate("/quiz/" + id);
+	};
 
 	// useEffect(() => {
 	// 	console.log(data);
@@ -222,7 +227,10 @@ export default ({
 												}}
 												transition={{ duration: 0.3 }}
 											>
-												<CardButton>View Quiz</CardButton>
+												<CardButton onClick={() => viewSingleQuizPage(quiz.id)}>
+													View Quiz
+												</CardButton>
+												<CardButton>Delete Quiz</CardButton>
 											</CardHoverOverlay>
 										</CardImageContainer>
 										<CardText>
