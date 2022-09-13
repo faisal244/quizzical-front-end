@@ -51,9 +51,9 @@ export default ({
 	navLinks = [
 		<NavLinks key={1}>
 			<NavLink href="/create-quiz">Create a New Quiz</NavLink>
-			<NavLink href="#">View All Quizzes</NavLink>
-			{/* <NavLink href="#">Pricing</NavLink> */}
-			<NavLink href="/login">Login</NavLink>
+			<NavLink href="/view-all-quizzes">View All Quizzes</NavLink>
+			{/* <NavLink href="#">About</NavLink> */}
+			{/* <NavLink href="/login">Login</NavLink> */}
 		</NavLinks>,
 	],
 	heading = (
