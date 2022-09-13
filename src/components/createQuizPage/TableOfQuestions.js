@@ -9,25 +9,35 @@ import Paper from "@mui/material/Paper";
 export const TableOfQuestions = ({ quizData }) => {
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <Table sx={{ minWidth: 600 }} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell align="right">Questions</TableCell>
-            <TableCell align="right">Correct Answer</TableCell>
-            <TableCell align="right">Incorrect Answer</TableCell>
+            <TableCell align="right" sx={{ backgroundColor: "green" }}>
+              Correct Answer
+            </TableCell>
+            <TableCell align="right" sx={{ backgroundColor: "red" }}>
+              Incorrect Answer
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {quizData.map((row) => (
-            <TableRow
-              key={row.title}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell align="right">{row.question}</TableCell>
-              <TableCell align="right">{row.correct_answer}</TableCell>
-              <TableCell align="right">{row.incorrect_answers}</TableCell>
-            </TableRow>
-          ))}
+          {quizData.map((row) => {
+            return (
+              <TableRow
+                key={row.title}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell align="right">{row.question}</TableCell>
+                <TableCell align="right" sx={{ backgroundColor: "green" }}>
+                  {row.correct_answer}
+                </TableCell>
+                <TableCell align="right" sx={{ backgroundColor: "red" }}>
+                  {JSON.stringify(row.incorrect_answers)}
+                </TableCell>
+              </TableRow>
+            );
+          })}
         </TableBody>
       </Table>
     </TableContainer>

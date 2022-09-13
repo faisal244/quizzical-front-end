@@ -1,11 +1,12 @@
+import Card from "react-bootstrap/Card";
 import Stack from "@mui/material/Stack";
-import { TableOfQuestions } from "../components/createQuizPage/TableOfQuestions";
 import Button from "@mui/material/Button";
 import { useQuery, useMutation } from "@apollo/client";
 import { GETMYQUIZES } from "../graphql/queries";
 import { DELETEQUIZ } from "../graphql/mutations";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { TableOfQuestions } from "../components/createQuizPage/TableOfQuestions";
 
 export const DashboardPage = () => {
   const [viewAllQuizzesBtn, setAllQuizzesButton] = useState(false);
@@ -30,9 +31,8 @@ export const DashboardPage = () => {
   };
 
   const viewQuizes = () => {
-    setAllQuizzesButton(true);
     setHideWelcomeMessage(true);
-    setQuizView(true);
+    setAllQuizzesButton(true);
   };
 
   const handleDeleteQuiz = (id) => {
@@ -92,7 +92,34 @@ export const DashboardPage = () => {
             View All Quizes
           </Button>
         )}
-        {viewAllQuizzesBtn && <TableOfQuestions />}
+        {viewAllQuizzesBtn && (
+          <div className="bg-light border">
+            <TableOfQuestions />
+            <Button
+              sx={{
+                maxWidth: 200,
+                backgroundColor: "green",
+                color: "whitesmoke",
+                borderRadius: "2",
+              }}
+              onClick={() => handleviewQuestionsAndAnswer()}
+            >
+              ViewQuestionsAndAnswers
+            </Button>
+            <Button
+              sx={{
+                maxWidth: 200,
+                backgroundColor: "green",
+                color: "whitesmoke",
+                borderRadius: "2",
+              }}
+              onClick={() => handleDeleteQuiz()}
+            >
+              Delete Quiz
+            </Button>
+            );
+          </div>
+        )}
       </Stack>
     </div>
   );
