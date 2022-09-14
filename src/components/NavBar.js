@@ -31,13 +31,11 @@ export const NavBar = () => {
   };
 
   const logOut = () => {
-    //clear from localstorage
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    // render the login sign up page
     setIsLoggedIn(false);
     setUser();
-    navigate("/");
+    navigate("/login");
   };
 
   const navItems = isLoggedIn
@@ -47,14 +45,9 @@ export const NavBar = () => {
           path: "/",
           onClick: navigator,
         },
-        // {
-        // 	label: "DashBoard",
-        // 	path: "/dashboard",
-        // 	onClick: navigator,
-        // },
         {
           label: "Log Out",
-          path: "/logout",
+          path: "/login",
           onClick: logOut,
         },
       ]

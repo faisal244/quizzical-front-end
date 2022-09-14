@@ -159,7 +159,9 @@ export default ({
     ],
   },
 }) => {
-  const { data, error, loading } = useQuery(GETALLQUIZZES);
+  const { data, error, loading } = useQuery(GETALLQUIZZES, {
+    fetchPolicy: "network-only",
+  });
 
   const tabsKeys = Object.keys(tabs);
   const [activeTab, setActiveTab] = useState(tabsKeys[0]);
