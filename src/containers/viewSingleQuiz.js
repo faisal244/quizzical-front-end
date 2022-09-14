@@ -24,11 +24,6 @@ export const ViewSingleQuizPage = () => {
     variables: { getQuizId: id },
   });
 
-  // call the query, pass in the id
-
-  console.log(data);
-
-  // return <TableOfQuestions />;
   return (
     data && (
       <div>

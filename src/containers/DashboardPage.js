@@ -24,9 +24,7 @@ export const DashboardPage = () => {
     navigate("/create-quiz");
   };
 
-  const handleviewQuestionsAndAnswer = (item) => {
-    console.log(item.questions);
-  };
+  const handleviewQuestionsAndAnswer = (item) => {};
 
   const viewQuizes = () => {
     setAllQuizzesButton(true);
@@ -34,7 +32,6 @@ export const DashboardPage = () => {
   };
 
   const handleDeleteQuiz = (id) => {
-    console.log(id);
     const deletedQuiz = deleteQuiz({
       variables: { deleteQuizId: id },
     });
@@ -94,7 +91,6 @@ export const DashboardPage = () => {
             {viewAllQuizzesBtn && (
               <div className="bg-light border">
                 {data.getMyQuiz.quizzes.map((item) => {
-                  console.log(item);
                   return (
                     <Card
                       key={item.id}
@@ -125,9 +121,7 @@ export const DashboardPage = () => {
                         >
                           ViewQuestionsAndAnswers
                         </Button>
-                        {item.questions.map((question) => {
-                          console.log(question);
-                        })}
+                        {item.questions.map((question) => {})}
                         <Button
                           sx={{
                             maxWidth: 200,

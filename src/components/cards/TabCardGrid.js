@@ -6,11 +6,34 @@ import { css } from "styled-components/macro"; //eslint-disable-line
 import { Container, ContentWithPaddingXl } from "components/misc/Layouts.js";
 import { SectionHeading } from "components/misc/Headings.js";
 import { PrimaryButton as PrimaryButtonBase } from "components/misc/Buttons.js";
-import { ReactComponent as StarIcon } from "images/star-icon.svg";
 import { ReactComponent as SvgDecoratorBlob1 } from "images/svg-decorator-blob-5.svg";
 import { ReactComponent as SvgDecoratorBlob2 } from "images/svg-decorator-blob-7.svg";
 
-import Entertainment from "../../images/imagesforcards/cinema.jpg";
+import Anime from "../../images/imagesforcards/anime.jpg";
+import QuizzocalLogo from "../../images/quizzical-logo-q.png";
+import Animals from "../../images/imagesforcards/animals.jpg";
+import Art from "../../images/imagesforcards/art.jpg";
+import Books from "../../images/imagesforcards/books.jpg";
+import BoardGame from "../../images/imagesforcards/boardgame.jpg";
+import Cartoon from "../../images/imagesforcards/cartoon.jpg";
+import Celeb from "../../images/imagesforcards/celeb.jpg";
+import Cinema from "../../images/imagesforcards/cinema.jpg";
+import Comics from "../../images/imagesforcards/comics.jpg";
+import Gadgets from "../../images/imagesforcards/gadgets.jpg";
+import GeneralKnowledge from "../../images/imagesforcards/generalknowledge.jpg";
+import Geography from "../../images/imagesforcards/geo.jpg";
+import History from "../../images/imagesforcards/history.jpg";
+import Politics from "../../images/imagesforcards/politics.jpg";
+import Theatre from "../../images/imagesforcards/theatre.jpg";
+import Maths from "../../images/imagesforcards/maths.jpg";
+import Music from "../../images/imagesforcards/music.jpg";
+import Mythology from "../../images/imagesforcards/mythology.jpg";
+import Science from "../../images/imagesforcards/science.jpg";
+import Sports from "../../images/imagesforcards/sports.jpg";
+import Vechile from "../../images/imagesforcards/vechile.jpg";
+import VideoGames from "../../images/imagesforcards/videogames.jpg";
+import DefaultImg from "../../images/imagesforcards/default.jpg";
+
 import { default as images } from "constants/images";
 import { useQuery } from "@apollo/client";
 import { GETALLQUIZZES } from "graphql/queries";
@@ -188,11 +211,87 @@ export default ({
                 let image;
                 switch (quiz.category) {
                   case "Entertainment: Television":
-                    image = Entertainment;
+                    image = Cinema;
+                    break;
+                  case "General Knowledge":
+                    image = GeneralKnowledge;
+                    break;
+                  case "Entertainment: Books":
+                    image = Books;
+                    break;
+                  case "Entertainment: Film":
+                    image = Cinema;
+                    break;
+                  case "Entertainment: Music":
+                    image = Music;
+                    break;
+                  case "Entertainment: Musicals & Theatres":
+                    image = Books;
+                    break;
+                  case "Entertainment: Books":
+                    image = Books;
+                    break;
+                  case "Entertainment: Musicals & Theatres":
+                    image = Theatre;
+                    break;
+                  case "Entertainment: Video Games":
+                    image = VideoGames;
+                    break;
+                  case "Entertainment: Board Games":
+                    image = BoardGame;
+                    break;
+                  case "Science & Nature":
+                    image = Science;
+                    break;
+
+                  case "Science: Computers":
+                    image = DefaultImg;
+                    break;
+                  case "Science: Mathematics":
+                    image = Maths;
+                    break;
+                  case "Mythology":
+                    image = Mythology;
+                    break;
+                  case "Sports":
+                    image = Sports;
+                    break;
+                  case "Geography":
+                    image = Geography;
+                    break;
+                  case "History":
+                    image = History;
+                    break;
+                  case "Politics":
+                    image = Politics;
+                    break;
+                  case "Art":
+                    image = Art;
+                    break;
+                  case "Celebrities":
+                    image = Celeb;
+                    break;
+                  case "Animals":
+                    image = Animals;
+                    break;
+                  case "Vehicles":
+                    image = Vechile;
+                    break;
+                  case "Entertainment: Comics":
+                    image = Comics;
+                    break;
+                  case "Science: Gadgets":
+                    image = Gadgets;
+                    break;
+                  case "Entertainment: Japanese Anime & Manga":
+                    image = Anime;
+                    break;
+                  case "Entertainment: Cartoon & Animations":
+                    image = Cartoon;
                     break;
 
                   default:
-                    image = Entertainment;
+                    image = QuizzocalLogo;
                     break;
                 }
                 return (
