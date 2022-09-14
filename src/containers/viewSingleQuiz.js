@@ -1,23 +1,44 @@
 import TableOfQuestions from "components/TableOfQuestions";
+import Button from "@mui/material/Button";
+import { Box } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GETSINGLEQUIZ } from "graphql/queries";
+import { DELETEQUIZ } from "../graphql/mutations";
 
 export const ViewSingleQuizPage = () => {
-	const { id } = useParams();
+  const { id } = useParams();
 
-	const { data, loading, error } = useQuery(GETSINGLEQUIZ, {
-		variables: { getQuizId: id },
-	});
+  const handleDeleteQuiz = () => {
+    console.log("deleted");
+  };
 
-	// call the query, pass in the id
+  const { data, loading, error } = useQuery(GETSINGLEQUIZ, {
+    variables: { getQuizId: id },
+  });
 
-	console.log(data);
+  // call the query, pass in the id
 
-	// return <TableOfQuestions />;
-	return (
-		data && <div>{<TableOfQuestions quizData={data.getQuiz.questions} />}</div>
-	);
+  console.log(data);
+
+  // return <TableOfQuestions />;
+  return (
+    data && (
+      <div>
+        {<TableOfQuestions quizData={data.getQuiz.questions} />}
+        <Box m={1} display="flex" justifyContent="center" alignItems="center">
+          <Button
+            variant="contained"
+            color="error"
+            sx={{ justifyContent: "center" }}
+            onClick={handleDeleteQuiz}
+          >
+            Delete Quiz
+          </Button>
+        </Box>
+      </div>
+    )
+  );
 };
 
 export default ViewSingleQuizPage;
