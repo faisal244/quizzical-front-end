@@ -25,6 +25,7 @@ export const GETSINGLEQUIZ = gql`
 	query GetQuiz($getQuizId: ID!) {
 		getQuiz(id: $getQuizId) {
 			id
+			title
 			questions {
 				correctAnswer
 				incorrectAnswers
@@ -37,7 +38,6 @@ export const GETSINGLEQUIZ = gql`
 	}
 `;
 
-
 export const GETALLQUIZZES = gql`
 	query GetQuizes {
 		getQuizes {
@@ -49,5 +49,3 @@ export const GETALLQUIZZES = gql`
 		}
 	}
 `;
-
-

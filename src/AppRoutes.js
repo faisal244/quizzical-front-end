@@ -7,7 +7,10 @@ import { Introduction } from "./containers/Introduction";
 import Hero from "components/hero/FullWidthWithImage";
 import { useAuth } from "./context/AppProvider";
 import { Homepage } from "./containers/Homepage";
+import { ViewAllQuizzes } from "./containers/ViewAllQuizzesPage";
 import { Footer } from "components/footers/MiniCenteredFooter";
+// import { default as TableOfQuestions } from "components/TableOfQuestions";
+import { default as ViewSingleQuizPage } from "containers/ViewSingleQuiz";
 
 export const AppRoutes = () => {
 	const { isLoggedIn } = useAuth();
@@ -37,17 +40,22 @@ export const AppRoutes = () => {
 						path="/"
 						element={<Homepage />}
 					/>
+
 					<Route
-						path="/introduction"
-						element={<Introduction />}
+						path="/dashboard"
+						element={<ViewAllQuizzes />}
 					/>
 					{/* <Route
-						path="/dashboard"
-						element={<DashboardPage />}
+						path="/view-all-quizzes"
+						element={<ViewAllQuizzes />}
 					/> */}
 					<Route
 						path="/create-quiz"
 						element={<CreateQuizPage />}
+					/>
+					<Route
+						path="/quiz/:id"
+						element={<ViewSingleQuizPage />}
 					/>
 				</>
 			)}

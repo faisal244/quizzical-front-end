@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { CREATEQUIZ } from "../graphql/mutations";
 import Hero from "components/hero/FullWidthWithImage";
+import { default as TableOfQuestions } from "components/TableOfQuestions";
 // import QuestionCard from "components/QuestionCard";
 
 const difficulties = [
@@ -364,12 +365,20 @@ export const CreateQuizPage = () => {
 
 			<Box>
 				{quizData ? (
-					<Quiz
-						quizData={quizData.results}
+					<TableOfQuestions
+						quizData={quizData.results.map(
+							({ question, incorrect_answers, correct_answer }) => {
+								return {
+									question,
+									incorrectAnswers: incorrect_answers,
+									correctAnswer: correct_answer,
+								};
+							}
+						)}
 						title={title}
 					/>
 				) : (
-					"No Data"
+					""
 				)}
 			</Box>
 
