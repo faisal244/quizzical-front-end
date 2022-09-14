@@ -2,12 +2,9 @@ import Card from "react-bootstrap/Card";
 import basicImage from "../images/scores.jpg";
 
 export const Quiz = ({ quizData, title }) => {
-  console.log(quizData);
-
   return (
     <div className="create-quiz-cards">
       {quizData.map((each) => {
-        console.log(each.category);
         return (
           <Card style={{ width: "18rem" }} className="card-styles">
             <h1 className="quiz-title">{title}</h1>

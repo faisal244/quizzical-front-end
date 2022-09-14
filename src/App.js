@@ -14,13 +14,6 @@ import { NavBar } from "./components/NavBar";
 
 import "style.css";
 import "tailwindcss/lib/css/preflight.css";
-import AnimationRevealPage from "helpers/AnimationRevealPage";
-import Hero from "components/hero/FullWidthWithImage";
-import Features from "components/features/DashedBorderSixFeatures.js";
-import Card from "components/cards/TabCardGrid.js";
-import Homepage from "containers/Homepage";
-
-import { default as images } from "constants/images";
 
 const link = createHttpLink({
 	uri: process.env.REACT_APP_GRAPHQL || "http://localhost:4000",
@@ -54,7 +47,6 @@ export const App = () => {
 					>
 						<NavBar />
 						<AppRoutes />
-						{/* <Homepage /> */}
 					</Stack>
 				</AppProvider>
 			</BrowserRouter>
