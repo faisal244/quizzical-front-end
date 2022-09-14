@@ -3,14 +3,21 @@ import Button from "@mui/material/Button";
 import { Box } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { GETSINGLEQUIZ } from "graphql/queries";
 import { DELETEQUIZ } from "../graphql/mutations";
 
 export const ViewSingleQuizPage = () => {
+  const [
+    deleteQuiz,
+    { data: deletedData, loading: deletedLoading, error: deletedError },
+  ] = useMutation(DELETEQUIZ);
+
   const { id } = useParams();
 
-  const handleDeleteQuiz = () => {
-    console.log("deleted");
+  const handleDeleteQuiz = async (event) => {
+    event.preventDefault();
+    const deletedQuiz = await deleteQuiz({ variables: { deleteQuizId: id } });
   };
 
   const { data, loading, error } = useQuery(GETSINGLEQUIZ, {
