@@ -33,7 +33,7 @@ A user will be able sign up/login, from there they will be able to create a quiz
 
 ## Links to the project
 
-Deployed URL: []()
+Deployed URL: [https://whispering-woodland-03742.herokuapp.com/](https://whispering-woodland-03742.herokuapp.com/)
 
 Github front-end repository: [https://github.com/faisal244/project-dynamite-front-end](https://github.com/faisal244/project-dynamite-front-end)
 
@@ -91,7 +91,11 @@ THEN my session is deleted
 
 - Libraries: MUI, Google fonts, FontAwesome
 
-- API:
+## React.JS
+
+The team used react to render and style the front end. Using react allowed the application to be developed dynamically to a very high standard.
+
+We integrated MUI library for styling within the react file; allowing us to not to need a further CSS page. Being able to do the CSS alongside the development of the front-end saved the team time.
 
 ## Future developments
 
