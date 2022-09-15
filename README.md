@@ -108,6 +108,12 @@ We integrated MUI library for styling within the react file; allowing us to not 
 
 ## Screenshots
 
+![Homepage](./public/img/homepage.png)
+![sign-up](./public/img/signup.png)
+![login](./public/img/login.png)
+![dashboard](./public/img/dashboard.png)
+![generate](./public/img/generate.png)
+
 ## Installation
 
 ```
