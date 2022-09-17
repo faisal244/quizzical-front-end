@@ -1,70 +1,129 @@
-# Getting Started with Create React App
+# Quizzical Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
 
-## Available Scripts
+- [Project Summary](#project-summary)
+- [Team Members](#team-members)
+- [Links to the project](#links-to-the-project)
+- [Concept](#concept)
+- [User Story](#user-story)
+- [Technologies](#technologies)
+- [Screenshots](#screenshots)
+- [Installation](#installation)
 
-In the project directory, you can run:
+## Project Summary
 
-### `npm start`
+Quizzical - your one stop application for multiple quizzes; perfect for hosting quiz nights at home, for a party or a night down the pub!
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+A user will be able sign up/login, from there they will be able to create a quiz, save a quiz and delete a quiz. The quiz questions are rendered randomly through a third party API.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Team members
 
-### `npm test`
+[Smeea Arshad](https://github.com/smeea-2018)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[Abdi Rahman Osman](https://github.com/AOsman0)
 
-### `npm run build`
+[Faisal Mohammed](https://github.com/faisal244)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[Abu Saddique](https://github.com/abusaddique95)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+[Aisha Saleh](https://github.com/Saleha22)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+[Amal Idiris](https://github.com/Amalidi)
 
-### `npm run eject`
+## Links to the project
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Deployed URL: [https://whispering-woodland-03742.herokuapp.com/](https://whispering-woodland-03742.herokuapp.com/)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Github front-end repository: [https://github.com/faisal244/project-dynamite-front-end](https://github.com/faisal244/project-dynamite-front-end)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Github back-end repository: [https://github.com/faisal244/project-dynamite-back-end](https://github.com/faisal244/project-dynamite-back-end)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Google Slides: [https://docs.google.com/presentation/d/1YOZZd2dNTa-U7u3HH1mEhfEBUx6RuF2ioFJ30Oh1Nf4/edit#slide=id.g1393452a5d8_0_141](https://docs.google.com/presentation/d/1YOZZd2dNTa-U7u3HH1mEhfEBUx6RuF2ioFJ30Oh1Nf4/edit#slide=id.g1393452a5d8_0_141)
 
-## Learn More
+## Concept
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Ever had a family night in with nothing to do? Quizicle comes to the rescue. This fun react application allows users to sign up, login and create quizzes from a host of different categories and difficulties. The questions are generated and rendered through a third party API
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## User Story
 
-### Code Splitting
+```
+AS A USER i want to be able to sign up
+SO THAT i can create my own profile
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+I WANT to be able to login
+SO THAT i can track my progress of the quizzes i have created
 
-### Analyzing the Bundle Size
+WHEN I LOGIN
+THEN i am directed to the dashboard page
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+WHEN I land on the dashboard page
+THEN a create quiz button will appear
 
-### Making a Progressive Web App
+WHEN I create a quiz
+THEN save my quiz in the database, so that i can view it later
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+WHEN I create multiple quizzes
+THEN they are all shown in the dashboard page
 
-### Advanced Configuration
+WHEN you generate a quiz
+THEN an overview of the quiz will be displayed
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+IF a user is unhappy with the quiz questions
+THEN a button will allow to refetch new questions
 
-### Deployment
+WHEN a quiz is completed and user is happy
+THEN then the quiz will be saved
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+WHEN I delete a quiz
+THEN the quiz no longer shows up on my dashboard page
 
-### `npm run build` fails to minify
+WHEN I logout
+THEN my session is deleted
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+```
+
+## Technologies
+
+- Core files: JS, Node.JS, React.js, MongoDB
+
+- Libraries: MUI, Google fonts, FontAwesome
+
+## React.JS
+
+The team used react to render and style the front end. Using react allowed the application to be developed dynamically to a very high standard.
+
+We integrated MUI library for styling within the react file; allowing us to not to need a further CSS page. Being able to do the CSS alongside the development of the front-end saved the team time.
+
+## Future developments
+
+- Add trending quizzes feature on the homepage
+- Update UI
+- Allow other users to participate in quizzes
+- Allow incoming friend requests
+- Allow a quiz master to host quizzes
+- Be able to send and receive quiz requests
+
+## Screenshots
+
+![Homepage](./public/img/homepage.png)
+![sign-up](./public/img/signup.png)
+![login](./public/img/login.png)
+![dashboard](./public/img/dashboard.png)
+![generate](./public/img/generate.png)
+
+## Installation
+
+```
+git clone git@github.com:faisal244/project-dynamite-front-end.git
+cd project-dynamite-front-end
+npm install
+```
+
+```
+git clone git@github.com:faisal244/project-dynamite-back-end.git
+cd project-dynamite-back-end
+npm install
+```
